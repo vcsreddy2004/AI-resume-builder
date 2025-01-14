@@ -1,8 +1,14 @@
 import { StyleSheet } from "@react-pdf/renderer";
 
 export const Style = StyleSheet.create({
-    textBold: {
+    textLight: {
         color:'gray',
+    },
+    PaddingLeft: {
+        paddingLeft:'10px'
+    },
+    textDark: {
+        color:'rgb(0, 0, 0)',
     },
     textCenter: {
         textAlign:'center'
