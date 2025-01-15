@@ -8,7 +8,7 @@ export const Style = StyleSheet.create({
         paddingLeft:'10px'
     },
     textDark: {
-        color:'rgb(0, 0, 0)',
+        color:'rgb(27, 27, 27)',
     },
     textCenter: {
         textAlign:'center'
@@ -16,17 +16,20 @@ export const Style = StyleSheet.create({
     row: {
         flexDirection:"row"
     },
-    font10: {
-        fontSize:10,
+    collumn: {
+        flexDirection: 'column',
+    },
+    headerMargin: {
+        marginVertical:'10px',
     },
     font12: {
         fontSize:12,
     },
-    font30: {
-        fontSize:30,
+    font20: {
+        fontSize:20,
     },
-    font40: {
-        fontSize:40,
+    font15: {
+        fontSize:15,
     },
     font50: {
         fontSize:50,
