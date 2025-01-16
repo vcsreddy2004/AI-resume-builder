@@ -1,14 +1,20 @@
-import { PDFViewer } from '@react-pdf/renderer';
 import './App.css';
-import Resume from './components/resume';
 import './../node_modules/bootstrap/dist/css/bootstrap.css';
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import ViewResume from './components/view-resume';
+import ResumeForm from './components/resume-form';
 function App() {
   return (
-    <div className='w-full'>
-      <PDFViewer width="100%" height="700px">
-        <Resume title='resume'></Resume>
-      </PDFViewer>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' Component={ResumeForm}></Route>
+        </Routes>
+        <Routes>
+          <Route path='/view-resume' Component={ViewResume}></Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
