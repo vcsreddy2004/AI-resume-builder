@@ -24,7 +24,7 @@ let Resume = () => {
                     </View>
                     <Text style={[Style.textDark,Style.font20]}>Education</Text>
                     <View style={[Style.row]}>
-                        <Text style={[Style.font12,Style.textDark]}>Bachler of Technology </Text>
+                        <Text style={[Style.font12,Style.textDark]}>Bachelor of Technology </Text>
                         <Text style={[Style.font12]}>| AIML | Acharya Nagarjuna University | 9.85 CGPA</Text>
                     </View>
                     <View style={[Style.row]}>
