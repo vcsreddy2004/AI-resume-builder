@@ -22,8 +22,49 @@ let ResumeForm = () => {
         diplomaBranch:"",
         diplomaResultType:"",
         diplomaResult:"",
+        experienceRole1:"",
+        experienceCompany1:"",
+        experienceLocation1:"",
+        experience1StartDate:"",
+        experience1EndDate:"",
+        experience1Descreption:"",
+        experienceRole2:"",
+        experienceCompany2:"",
+        experienceLocation2:"",
+        experience2StartDate:"",
+        experience2EndDate:"",
+        experience2Descreption:"",
+        experienceRole3:"",
+        experienceCompany3:"",
+        experienceLocation3:"",
+        experience3StartDate:"",
+        experience3EndDate:"",
+        experience3Descreption:"",
+        project1Name:"",
+        project1TechStack:"",
+        project1Descreption:"",
+        project2Name:"",
+        project2TechStack:"",
+        project2Descreption:"",
+        project3Name:"",
+        project3TechStack:"",
+        project3Descreption:"",
     });
     let [showMasters,setShowMasters] = useState(null);
+    let [experienceCount, setExperienceCount] = useState(0);
+    let [projectsCount, setProjectCount] = useState(0);
+    let setExperienceCounter = (event) => {
+        if(experienceCount<3)
+        {
+            setExperienceCount((prev)=>prev+=1)
+        }
+    }
+    let setProjectCounter = () => {
+        if(projectsCount<3)
+        {
+            setProjectCount((prev)=>prev+1)
+        }
+    }
     let handleCheckboxChange = (event) => {
         setShowMasters((prev)=>!prev);
     }
@@ -51,7 +92,6 @@ let ResumeForm = () => {
     }
     return (
         <>
-            <pre>{JSON.stringify(resumeData)}</pre>
             <div className="container mt-5">
                 <div className="card shadow-lg">
                     <div className="card-header">
@@ -124,7 +164,7 @@ let ResumeForm = () => {
                                         onChange={handleCheckboxChange}
                                     />
                                     <label className="form-check-label" htmlFor="showMastersCheckbox">
-                                        Show Masters Section
+                                        completed Masters
                                     </label>
                                 </div>
                                 {showMasters && (
@@ -249,6 +289,104 @@ let ResumeForm = () => {
                                         </table>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div className="card col-md-12">
+                            <div className="card-header bg-dark text-white">
+                                Experience
+                            </div>
+                            <div className="card-body">
+                            {Array.from({ length: experienceCount }, (_, i) => (
+                                <div className="card">
+                                    <div className="card-header bg-dark text-white">
+                                        Experience {i+1}
+                                    </div>
+                                    <div className="card-body">
+                                        <table className="col-md-12">
+                                            <tr>
+                                                <td className="col-md-6">
+                                                    <span>Role<br/></span>
+                                                    <input type="text" name={`experienceRole${i+1}`} onChange={updateResumeData} className="col-md-12" />
+                                                </td>
+                                                <td>
+                                                    <span>Company</span>
+                                                    <input type="text" name={`experienceCompany${i+1}`} onChange={updateResumeData} className="col-md-12" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>Location</span>
+                                                    <input type="text" name={`experienceLocation${i+1}`} onChange={updateResumeData} className="col-md-12" />
+                                                </td>
+                                                <td>
+                                                    <tr>
+                                                        <td>
+                                                            <span>Start Date</span> 
+                                                        </td>
+                                                        <td>
+                                                            <span>End Date<br/></span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="date" name={`experience${i+1}StartDate`} onChange={updateResumeData} className="col-md-12" />
+                                                        </td>
+                                                        <td>
+                                                            <input type="date" name={`experience${i+1}EndDate`} onChange={updateResumeData} className="col-md-12" />
+                                                        </td>
+                                                    </tr>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Descreption</td>
+                                            </tr>
+                                            <tr>
+                                                <td colSpan={2}>
+                                                    <textarea name={`experience${i+1}Descreption`} onChange={updateResumeData} maxLength={200} className="col-md-12"></textarea>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            ))}
+                                <input type="button" value="+ Add" onClick={setExperienceCounter} className="bg-success text-white border-0" />
+                            </div>
+                        </div>
+                        <div className="card col-md-12">
+                            <div className="card-header bg-dark text-white">
+                                Projects
+                            </div>
+                            <div className="card-body">
+                            {Array.from({ length: projectsCount }, (_, i) => (
+                                <div className="card">
+                                    <div className="card-header bg-dark text-white">
+                                        Project {i+1}
+                                    </div>
+                                    <div className="card-body">
+                                        <table className="col-md-12">
+                                            <tr>
+                                                <td className="col-md-6">
+                                                    <span>Project Name<br/></span>
+                                                    <input type="text" name={`project${i+1}Name`} onChange={updateResumeData} className="col-md-12" />
+                                                </td>
+                                                <td>
+                                                    <span>TechStack</span>
+                                                    <input type="text" name={`project${i+1}TechStack`} onChange={updateResumeData} className="col-md-12" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Project Descreption</td>
+                                            </tr>
+                                            <tr>
+                                                <td colSpan={2}>
+                                                    <textarea name={`project${i+1}Descreption`} onChange={updateResumeData} maxLength={200} className="col-md-12"></textarea>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            ))}
+                                <input type="button" value="+ Add" onClick={setProjectCounter} className="bg-success text-white border-0" />
                             </div>
                         </div>
                     </div>

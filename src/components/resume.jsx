@@ -35,7 +35,7 @@ let Resume = () => {
                         <Text style={[Style.font12,Style.textDark]}>10th </Text>
                         <Text style={[Style.font12]}>| SSC | Sri Chaitanya Techo Sckool | 100%</Text>
                     </View>
-                    <Text style={[Style.textDark,Style.font20]}>Expirence</Text>
+                    <Text style={[Style.textDark,Style.font20]}>Experience</Text>
                     <View style={[Style.row]}>
                         <Text style={[Style.font15,Style.textDark]}>Software Development Engineer </Text>
                         <Text style={[Style.font15]}>| Amazon | Banglore India </Text>
