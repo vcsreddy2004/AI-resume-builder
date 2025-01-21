@@ -43,24 +43,19 @@ let Resume = () => {
                     </View>
                     <View style={[Style.collumn,Style.font12]}>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>hihihihihihihi</Text>
+                            <Text>• hihihihihihihi</Text>
                         </View>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>11111111111111</Text>
+                            <Text>• 11111111111111</Text>
                         </View>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>22222222222222</Text>
+                            <Text>• 22222222222222</Text>
                         </View>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>22222222222222</Text>
+                            <Text>• 22222222222222</Text>
                         </View>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>22222222222222</Text>
+                            <Text>• 22222222222222</Text>
                         </View>
                     </View>
                     <View style={[Style.row]}>
@@ -70,24 +65,19 @@ let Resume = () => {
                     </View>
                     <View style={[Style.collumn,Style.font12]}>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>hihihihihihihi</Text>
+                            <Text>• hihihihihihihi</Text>
                         </View>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>11111111111111</Text>
+                            <Text>• 11111111111111</Text>
                         </View>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>22222222222222</Text>
+                            <Text>• 22222222222222</Text>
                         </View>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>22222222222222</Text>
+                            <Text>• 22222222222222</Text>
                         </View>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>22222222222222</Text>
+                            <Text>• 22222222222222</Text>
                         </View>
                     </View>
                     <View style={[Style.row]}>
@@ -97,75 +87,40 @@ let Resume = () => {
                     </View>
                     <View style={[Style.collumn,Style.font12]}>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>hihihihihihihi</Text>
+                            <Text>• hihihihihihihi</Text>
                         </View>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>11111111111111</Text>
+                            <Text>• 11111111111111</Text>
                         </View>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>22222222222222</Text>
+                            <Text>• 22222222222222</Text>
                         </View>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>22222222222222</Text>
+                            <Text>• 22222222222222</Text>
                         </View>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>22222222222222</Text>
+                            <Text>• 22222222222222</Text>
                         </View>
                     </View>
                     <Text style={[Style.textDark,Style.font20]}>Projects</Text>
                     <View style={[Style.row]}>
-                        <Text style={[Style.font15,Style.textDark]}>Project Name </Text>
+                        <Text style={[Style.font15,Style.textDark]}>Project Name</Text>
                     </View>
                     <View style={[Style.collumn,Style.font12]}>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>hihihihihihihi</Text>
+                            <Text>• hihihihihihihi</Text>
                         </View>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>11111111111111</Text>
+                            <Text>• 11111111111111</Text>
                         </View>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>22222222222222</Text>
+                            <Text>• 22222222222222</Text>
                         </View>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>22222222222222</Text>
+                            <Text>• 22222222222222</Text>
                         </View>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>22222222222222</Text>
-                        </View>
-                    </View>
-                    <View style={[Style.row]}>
-                        <Text style={[Style.font15,Style.textDark]}>Project Namer </Text>
-                    </View>
-                    <View style={[Style.collumn,Style.font12]}>
-                        <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>hihihihihihihi</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>11111111111111</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>22222222222222</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>22222222222222</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>22222222222222</Text>
+                            <Text>• 22222222222222</Text>
                         </View>
                     </View>
                     <View style={[Style.row]}>
@@ -173,24 +128,39 @@ let Resume = () => {
                     </View>
                     <View style={[Style.collumn,Style.font12]}>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>hihihihihihihi</Text>
+                            <Text>• hihihihihihihi</Text>
                         </View>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>11111111111111</Text>
+                            <Text>• 11111111111111</Text>
                         </View>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>22222222222222</Text>
+                            <Text>• 22222222222222</Text>
                         </View>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>22222222222222</Text>
+                            <Text>• 22222222222222</Text>
                         </View>
                         <View style={[Style.row]}>
-                            <Text style={{ marginHorizontal: 8 }}>•</Text>
-                            <Text>22222222222222</Text>
+                            <Text>• 22222222222222</Text>
+                        </View>
+                    </View>
+                    <View style={[Style.row]}>
+                        <Text style={[Style.font15,Style.textDark]}>Project Name</Text>
+                    </View>
+                    <View style={[Style.collumn,Style.font12]}>
+                        <View style={[Style.row]}>
+                            <Text>• hihihihihihihi</Text>
+                        </View>
+                        <View style={[Style.row]}>
+                            <Text>• 11111111111111</Text>
+                        </View>
+                        <View style={[Style.row]}>
+                            <Text>• 22222222222222</Text>
+                        </View>
+                        <View style={[Style.row]}>
+                            <Text>• 22222222222222</Text>
+                        </View>
+                        <View style={[Style.row]}>
+                            <Text>• 22222222222222</Text>
                         </View>
                     </View>
                 </View>

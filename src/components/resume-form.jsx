@@ -41,13 +41,10 @@ let ResumeForm = () => {
         experience3EndDate:"",
         experience3Descreption:"",
         project1Name:"",
-        project1TechStack:"",
         project1Descreption:"",
         project2Name:"",
-        project2TechStack:"",
         project2Descreption:"",
         project3Name:"",
-        project3TechStack:"",
         project3Descreption:"",
     });
     let [showMasters,setShowMasters] = useState(null);
@@ -368,10 +365,6 @@ let ResumeForm = () => {
                                                 <td className="col-md-6">
                                                     <span>Project Name<br/></span>
                                                     <input type="text" name={`project${i+1}Name`} onChange={updateResumeData} className="col-md-12" />
-                                                </td>
-                                                <td>
-                                                    <span>TechStack</span>
-                                                    <input type="text" name={`project${i+1}TechStack`} onChange={updateResumeData} className="col-md-12" />
                                                 </td>
                                             </tr>
                                             <tr>
