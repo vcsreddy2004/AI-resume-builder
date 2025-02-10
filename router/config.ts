@@ -1,5 +1,7 @@
-let HOST_NAME:string = "127.0.0.1";
-let PORT:number = 5500;
-let MONGO_DB_URL:string = "mongodb://localhost:27017/react-resume-builder";
-let SECRETE_KEY:string = "40p4r0p5t0plws0pqs0prf0tg0pedf0srgv4wrfb0eof4wgs0pq0pq0";
+import dotenv from "dotenv";
+dotenv.config({path:"./.env"})
+let HOST_NAME:string | undefined = process.env.HOST_NAME;
+let PORT:string | undefined = process.env.PORT;
+let MONGO_DB_URL:string | undefined= process.env.MONGO_DB_URL;
+let SECRETE_KEY:string | undefined = process.env.SECRETE_KEY;
 export default {HOST_NAME,PORT,MONGO_DB_URL,SECRETE_KEY}

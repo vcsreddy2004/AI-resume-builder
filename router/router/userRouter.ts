@@ -30,6 +30,7 @@ userRouter.post("/register",[
             userName:req.body.userName,
             password:req.body.password,
             token:"",
+            lastLogIn:null,
             errorMessage:""
         }
         let user:IUser | null = await User.findOne({ $or: [{userName:userData.userName},{email:userData.email}]});
@@ -77,6 +78,7 @@ userRouter.post("/login",[
             userName:req.body.userName,
             password:req.body.password,
             token:"",
+            lastLogIn:null,
             errorMessage:""
         }
         let user:IUser | null = await User.findOne({userName:userData.userName});
@@ -84,13 +86,56 @@ userRouter.post("/login",[
         {
             if(await bcrypt.compare(userData.password,user.password))
             {
-                let payLoad = {
-                    email:user.email,
-                    userName:user.userName
+                let currentDate = new Date();
+                if(user.lastLogIn)
+                {
+                    let loginLimit = new Date(user.lastLogIn);
+                    loginLimit.setHours(loginLimit.getHours() + 24);
+                    if (currentDate > loginLimit) 
+                    {
+                        let payLoad = {
+                            email:user.email,
+                            userName:user.userName
+                        }
+                        userData = {} as UserView;
+                        if(config.SECRETE_KEY)
+                        {
+                            await User.findOneAndUpdate({userName:user.userName},{lastLogIn:new Date()},{ new: true } );
+                            userData.token = await jwt.sign(payLoad,config.SECRETE_KEY);
+                            userData.errorMessage = "";
+                            return res.status(200).json(userData);
+                        }
+                        else
+                        {
+                            userData = {} as UserView;
+                            userData.errorMessage = "Environment variable error";
+                            return res.status(500).json(userData);
+                        }
+                    }
+                    userData.errorMessage = "Login after 24 hours"
+                    return res.status(400).json(userData);
+                    
                 }
-                userData = {} as UserView;
-                userData.token = await jwt.sign(payLoad,config.SECRETE_KEY);
-                return res.status(200).json(userData);
+                else
+                {
+                    let payLoad = {
+                        email:user.email,
+                        userName:user.userName
+                    }
+                    userData = {} as UserView;
+                    if(config.SECRETE_KEY)
+                    {
+                        await User.findOneAndUpdate({userName:user.userName},{lastLogIn:new Date()},{ new: true } );
+                        userData.token = await jwt.sign(payLoad,config.SECRETE_KEY);
+                        return res.status(200).json(userData);
+                    }
+                    else
+                    {
+                        userData = {} as UserView;
+                        userData.errorMessage = "Environment variable error";
+                        return res.status(500).json(userData);
+                    }
+                }
             }
             else
             {
@@ -121,6 +166,7 @@ userRouter.post("/get-user-data",async(req:express.Request,res:express.Response)
             userName:"",
             password:"",
             token:req.body.token,
+            lastLogIn:null,
             errorMessage:""
         }
         if(userData.token=="")
@@ -128,34 +174,55 @@ userRouter.post("/get-user-data",async(req:express.Request,res:express.Response)
             userData.errorMessage = "Invalid token";
             return res.status(500).json(userData);
         }
-        let payLoad: string | jwt.JwtPayload = jwt.verify(userData.token,config.SECRETE_KEY);
-        if(typeof(payLoad) == "string")
+        if(config.SECRETE_KEY)
         {
-            userData.errorMessage = "Invalid token";
-            return res.status(500).json(userData);
-        }
-        else
-        {
-            let user:IUser | null = await User.findOne({userName:payLoad.userName,email:payLoad.email}).select("-password");
-            if(user)
+            let payLoad: string | jwt.JwtPayload = jwt.verify(userData.token,config.SECRETE_KEY);
+            if(typeof(payLoad) == "string")
             {
-                userData = {
-                    firstName:user.firstName,
-                    lastName:user.lastName,
-                    email:user.email,
-                    userName:user.userName,
-                    password:"",
-                    errorMessage:"",
-                    token:""
-                }
-                return res.status(200).json(userData);
-            }
-            else
-            {
-                userData = {} as UserView;
                 userData.errorMessage = "Invalid token";
                 return res.status(500).json(userData);
             }
+            else
+            {
+                let user:IUser | null = await User.findOne({userName:payLoad.userName,email:payLoad.email}).select("-password");
+                let currentDate = new Date();
+                if(user)
+                {
+                    let loginLimit = new Date(user.lastLogIn);
+                    loginLimit.setHours(loginLimit.getHours() + 24);
+                    if (currentDate > loginLimit) 
+                    {
+                        userData.errorMessage = "token expired"
+                        return res.status(400).json(userData);
+                    }
+                    else
+                    {
+                        userData = {
+                            firstName:user.firstName,
+                            lastName:user.lastName,
+                            email:user.email,
+                            userName:user.userName,
+                            password:"",
+                            errorMessage:"",
+                            lastLogIn:null,
+                            token:""
+                        }
+                        return res.status(200).json(userData);
+                    }
+                }
+                else
+                {
+                    userData = {} as UserView;
+                    userData.errorMessage = "Invalid token";
+                    return res.status(500).json(userData);
+                }
+            }
+        }
+        else
+        {
+            userData = {} as UserView;
+            userData.errorMessage = "Environment variable error";
+            return res.status(500).json(userData);
         }
     }
     catch(err)

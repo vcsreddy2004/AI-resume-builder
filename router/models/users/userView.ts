@@ -5,5 +5,6 @@ export interface UserView {
     userName:string,
     password:string,
     token:string,
+    lastLogIn:Date | null,
     errorMessage:string
 }

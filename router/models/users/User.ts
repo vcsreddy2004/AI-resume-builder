@@ -7,6 +7,7 @@ let userSchema:Schema = new mongoose.Schema({
     lastName:{type:String,require:true},
     email:{type:String,require:true,unique:true},
     userName:{type:String,require:true,unique:true},
-    password:{type:String,require:true}
+    password:{type:String,require:true},
+    lastLogIn:{type:Date}
 });
 export default mongoose.model<IUser>("users",userSchema);
