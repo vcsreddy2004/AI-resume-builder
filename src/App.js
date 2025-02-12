@@ -7,6 +7,7 @@ import ResumeForm from './components/resume-form';
 import Navbar from './components/navbar';
 import Profile from './components/profile';
 import LogIn from './components/login';
+import Register from './components/register';
 function App() {
   return (
     <>
@@ -20,6 +21,9 @@ function App() {
         </Routes>
         <Routes>
           <Route path='/login' Component={LogIn}></Route>
+        </Routes>
+        <Routes>
+          <Route path='/register' Component={Register}></Route>
         </Routes>
         <Routes>
           <Route path='/profile' Component={Profile}></Route>
