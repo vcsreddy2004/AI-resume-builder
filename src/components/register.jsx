@@ -41,23 +41,9 @@ const Register = () => {
             document.getElementsByName("confirmPassword")[0].style.border = "1px solid black";
             UserSerVice.register(userData).then((res)=>{
                 window.location.href = "/login";
-            }).catch((err) => {
-                console.error("Full Error:", err);
-            
-                if (err.response) {
-                    console.error("Response Status:", err.response.status);
-                    console.error("Response Data:", err.response.data);
-            
-                    if (err.response.data && err.response.data.errors) {
-                        // Extract the first error message from the errors array
-                        setErrorMessage(err.response.data.errors[0].msg);
-                    } else {
-                        setErrorMessage("An unexpected error occurred. Please try again.");
-                    }
-                } else {
-                    setErrorMessage("Server not responding. Check your internet connection.");
-                }
-            });     
+            }).catch((err)=>{
+                setErrorMessage(err.response.data.errorMessage);
+            });
         }
     }
     return (

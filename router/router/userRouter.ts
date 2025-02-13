@@ -1,29 +1,15 @@
 import express from "express";
 import { UserView } from "../models/users/userView";
-import { body,validationResult } from "express-validator";
 import User from "../models/users/User";
 import { IUser } from "../models/users/IUser";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 import config from "../config";
 import AuthLogin from "../middleWare/auth";
+import jwt from "jsonwebtoken";
 let userRouter:express.Router = express.Router();
-userRouter.post("/register",[
-    body("firstName").not().isEmpty().withMessage("First name Can't left empty"),
-    body("lastName").not().isEmpty().withMessage("Last name can't left empty"),
-    body("email").not().isEmpty().withMessage("Email can't left empty"),
-    body("userName").not().isEmpty().withMessage("username can't left empty"),
-    body("email").not().isEmpty().withMessage("Email ID can't left empty"),
-    body("email").isEmail().withMessage("Email ID not defined"),
-    body("password").not().isEmpty().withMessage("Password can't left empty"),
-],async(req:express.Request,res:express.Response)=>{
+userRouter.post("/register",async(req:express.Request,res:express.Response)=>{
     try
     {
-        let errors = validationResult(req);
-        if(!errors.isEmpty())
-        {
-            return res.status(400).json(errors);
-        }
         let userData:UserView = {
             firstName:req.body.firstName,
             lastName:req.body.lastName,
@@ -61,17 +47,9 @@ userRouter.post("/register",[
         return res.status(500).json(err);
     }
 });
-userRouter.post("/login",[
-    body("userName").not().isEmpty().withMessage("username can't left empty"),
-    body("password").not().isEmpty().withMessage("Password can't left empty"),
-],async(req:express.Request,res:express.Response)=>{
+userRouter.post("/login",async(req:express.Request,res:express.Response)=>{
     try
     {
-        let errors = validationResult(req);
-        if(!errors.isEmpty())
-        {
-            return res.status(400).json(errors);
-        }
         let userData:UserView = {
             firstName:"",
             lastName:"",
