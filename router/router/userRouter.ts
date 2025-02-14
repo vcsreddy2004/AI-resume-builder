@@ -33,6 +33,12 @@ userRouter.post("/register",async(req:express.Request,res:express.Response)=>{
             userData.errorMessage = "user name and password is same";
             return res.status(400).json(userData);
         }
+        else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userData.email))
+        {
+            userData = {} as UserView;
+            userData.errorMessage = "invalid email id";
+            return res.status(400).json(userData);         
+        }
         else
         {
             let salt:string = await bcrypt.genSalt(10);

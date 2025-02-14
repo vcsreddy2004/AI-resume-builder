@@ -1,9 +1,11 @@
 import { useState } from "react";
+import UserSerVice from "../servises/UserService";
 let LogIn = ()=>{
     let [userData,setUserData] = useState({
         userName:"",
         password:""
-    })
+    });
+    let [errorMessage,setErrorMessage] = useState("");
     let [passwordView, setPasswordView] = useState(false);
     let changePasswordView = ()=>{
         setPasswordView((event)=>!event);
@@ -23,6 +25,15 @@ let LogIn = ()=>{
                 document.getElementsByName(key)[0].style.border = "2px solid red";
             }
         }
+        if(userData.userName !== "" && userData.password !== "")
+        {
+            UserSerVice.login(userData).then((res)=>{
+                localStorage.setItem("userToken",res.data.token);
+                window.location.href = "/";
+            }).catch((error)=>{
+                setErrorMessage(error.response.data.errorMessage);
+            });
+        }
     }
     return (
         <>
@@ -32,6 +43,7 @@ let LogIn = ()=>{
                         <i className="fa fa-user" style={{ fontSize: "200px", background: "linear-gradient(45deg, deeppink, black)", WebkitBackgroundClip: "text", color: "transparent" }}></i>
                     </div>
                     <div className="col-md-6 card-body">
+                        <div className="badge badge-danger bg-danger col-md-12" style={{fontSize:'20px'}}>{errorMessage}</div>
                         <span style={{fontSize:"20px"}}>User name</span>
                         <input type="text" className="col-md-12 mt-2" onChange={updataUserData} name="userName" placeholder="Enter your user name" />
                         <span style={{fontSize:"20px"}}>Password</span>
