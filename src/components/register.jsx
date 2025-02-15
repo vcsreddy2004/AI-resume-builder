@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import UserSerVice from "../servises/UserService";
 const Register = () => {
     let [userData,setUserData] = useState({
@@ -9,6 +9,19 @@ const Register = () => {
         password:"",
         confirmPassword:""
     });
+    useEffect(()=>{
+        let user = {
+            token:localStorage.getItem("userToken")
+        }
+        if(user.token)
+        {
+            UserSerVice.getUserData(user).then((res)=>{
+                window.location.href = "/";
+            }).catch((err)=>{
+                localStorage.removeItem("userToken");
+            })
+        }
+    },[]);
     let [errorMessage,setErrorMessage] = useState("");
     let updateUserData=(e)=>{
         setUserData(prev=>({

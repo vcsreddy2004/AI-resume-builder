@@ -1,5 +1,23 @@
+import { useState,useEffect } from "react";
+import UserSerVice from "../servises/UserService";
 import "./navbar.css"
 let Navbar = () =>{
+    let [isLogIn,setLogIn] = useState(false);
+    useEffect(()=>{
+        let userData = {
+            token:localStorage.getItem("userToken"),
+        }
+        if(userData.token)
+        {
+            UserSerVice.getUserData(userData).then((res)=>{
+                setLogIn(true);
+            });
+        }
+        else
+        {
+            setLogIn(false);
+        }
+    },[]);
     return (
         <>
             <div className="navbar navbar-dark bg-dark navbar-expand-sm">
@@ -15,19 +33,21 @@ let Navbar = () =>{
                         </a>
                     </div>
                 </div>
-                <div class="navbar-nav ms-auto">
-                    <div class="nav_item px-5">
-                        <div class="dropdown nav-link">   
-                            <a href="/profile" className="nav-link">
-                                <i className="fa fa-user"></i>
-                            </a>         
-                            <div class="dropdown-content bg-dark">
-                                <a href="/profile">Profile</a>
-                                <a href="/logout">Log out</a>
-                            </div>
-                        </div>                
+                {isLogIn && 
+                    <div class="navbar-nav ms-auto">
+                        <div class="nav_item px-5">
+                            <div class="dropdown nav-link">   
+                                <a href="/profile" className="nav-link">
+                                    <i className="fa fa-user"></i>
+                                </a>         
+                                <div class="dropdown-content bg-dark">
+                                    <a href="/profile">Profile</a>
+                                    <a href="/logout">Log out</a>
+                                </div>
+                            </div>                
+                        </div>
                     </div>
-                </div>
+                }
             </div>
         </>
     );

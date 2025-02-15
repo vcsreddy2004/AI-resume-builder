@@ -1,4 +1,26 @@
+import { useEffect, useState } from "react";
+import UserSerVice from "../servises/UserService";
+
 const Profile = () => {
+    let [user,setUser] = useState({
+        firstName:"",
+        lastName:"",
+        email:"",
+        userName:"",
+    });
+    useEffect(()=>{
+        let userData = {
+            token:localStorage.getItem("userToken"),
+        }
+        UserSerVice.getUserData(userData).then((res)=>{
+            setUser(prev=>({
+                firstName:res.data.firstName,
+                lastName:res.data.lastName,
+                email:res.data.email,
+                userName:res.data.userName
+            }));
+        });
+    },[]);
     return (
         <>
         <div className="container mt-5 shadow-lg">
@@ -9,38 +31,40 @@ const Profile = () => {
                 <div className="card bg-dark rounded-0 border-0 col-md-6 text-white p-3">
                     <div className="card col-md-12 text-white" style={{backgroundColor:'rgb(26, 32, 39)',height:'100%'}}>
                         <table className="col-md-12">
-                            <tr>
-                                <td className="col-md-2 p-2" style={{backgroundColor:'rgb(17, 27, 40)'}}>
-                                    First Name
-                                </td>
-                                <td className="col-md-8 ">
-                                    Dummy name
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="col-md-2 p-2" style={{backgroundColor:'rgb(17, 27, 40)'}}>
-                                    Last Name
-                                </td>
-                                <td>
-                                    Dummy name
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="col-md-2 p-2" style={{backgroundColor:'rgb(17, 27, 40)'}}>
-                                    Email
-                                </td>
-                                <td>
-                                    Dummy email
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="col-md-2 p-2" style={{backgroundColor:'rgb(17, 27, 40)'}}>
-                                    UserName
-                                </td>
-                                <td>
-                                    Dummy UserName
-                                </td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <td className="col-md-2 p-2" style={{backgroundColor:'rgb(17, 27, 40)'}}>
+                                        First Name
+                                    </td>
+                                    <td className="col-md-8 ">
+                                        {user.firstName}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="col-md-2 p-2" style={{backgroundColor:'rgb(17, 27, 40)'}}>
+                                        Last Name
+                                    </td>
+                                    <td>
+                                        {user.lastName}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="col-md-2 p-2" style={{backgroundColor:'rgb(17, 27, 40)'}}>
+                                        Email
+                                    </td>
+                                    <td>
+                                        {user.email}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="col-md-2 p-2" style={{backgroundColor:'rgb(17, 27, 40)'}}>
+                                        UserName
+                                    </td>
+                                    <td>
+                                       {user.userName}
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>

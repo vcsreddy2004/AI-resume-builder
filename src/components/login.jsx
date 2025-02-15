@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UserSerVice from "../servises/UserService";
 let LogIn = ()=>{
     let [userData,setUserData] = useState({
@@ -7,6 +7,19 @@ let LogIn = ()=>{
     });
     let [errorMessage,setErrorMessage] = useState("");
     let [passwordView, setPasswordView] = useState(false);
+    useEffect(()=>{
+        let user = {
+            token:localStorage.getItem("userToken")
+        }
+        if(user.token)
+        {
+            UserSerVice.getUserData(user).then((res)=>{
+                window.location.href = "/";
+            }).catch((err)=>{
+                localStorage.removeItem("userToken");
+            })
+        }
+    },[]);
     let changePasswordView = ()=>{
         setPasswordView((event)=>!event);
     }
@@ -50,7 +63,9 @@ let LogIn = ()=>{
                         <input type={passwordView?"text":"password"} className="col-md-11 mt-2" onChange={updataUserData} name="password" placeholder="Enter your password" />
                         <i className={`bg-dark text-white p-2 rounded-circle ${passwordView?"fa fa-eye":"fa fa-eye-slash"}`} style={{fontSize:"20px"}} onClick={changePasswordView}></i>
                         <input type="button" onClick={submitData} className="col-md-12 bg-success rounded mt-2 border-0 text-white" value="Log In" />
-                        <input type="button" className="col-md-12 bg-success rounded mt-2 border-0 text-white" value="Register" />
+                        <a href="/register">
+                            <input type="button" className="col-md-12 bg-success rounded mt-2 border-0 text-white" value="Register" />
+                        </a>
                     </div>
                 </div>
             </div>
