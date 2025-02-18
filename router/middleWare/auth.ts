@@ -5,30 +5,21 @@ import { IUser } from "../models/users/IUser";
 import User from "../models/users/User";
 import jwt from "jsonwebtoken";
 const AuthLogin = async (req:express.Request,res:express.Response,next:express.NextFunction) => {
-    let userData:UserView = {
-        firstName:"",
-        lastName:"",
-        email:"",
-        userName:"",
-        password:"",
-        token:req.body.token,
-        lastLogIn:null,
-        errorMessage:""
-    }
+    let token:string = req.headers['x_auth'] as string;
     try
     {
-        if(userData.token=="")
+        if(token=="")
         {
             let errorMessage = "Invalid token";
             return res.status(500).json({errorMessage});
         }
         if(config.SECRETE_KEY)
         {
-            let payLoad: string | jwt.JwtPayload = await jwt.verify(userData.token,config.SECRETE_KEY);
+            let payLoad: string | jwt.JwtPayload = await jwt.verify(token, config.SECRETE_KEY);
             if(typeof(payLoad) == "string")
             {
-                userData.errorMessage = "Invalid token";
-                return res.status(500).json(userData);
+                let errorMessage = "Invalid token";
+                return res.status(500).json({'errorMessaage':errorMessage});
             }
             else
             {
@@ -40,12 +31,12 @@ const AuthLogin = async (req:express.Request,res:express.Response,next:express.N
                     loginLimit.setHours(loginLimit.getHours() + 24);
                     if (currentDate > loginLimit) 
                     {
-                        userData.errorMessage = "token expired"
-                        return res.status(400).json(userData);
+                        let errorMessage = "token expired"
+                        return res.status(400).json({'errorMessage':errorMessage});
                     }
                     else
                     {
-                        userData = {
+                        let userData = {
                             firstName:user.firstName,
                             lastName:user.lastName,
                             email:user.email,
@@ -61,17 +52,15 @@ const AuthLogin = async (req:express.Request,res:express.Response,next:express.N
                 }
                 else
                 {
-                    userData = {} as UserView;
-                    userData.errorMessage = "Invalid token";
-                    return res.status(500).json(userData);
+                    let errorMessage = "Invalid token";
+                    return res.status(500).json({'errorMessage':errorMessage});
                 }
             }
         }
         else
         {
-            userData = {} as UserView;
-            userData.errorMessage = "Environment variable error";
-            return res.status(500).json(userData);
+            let errorMessage = "Environment variable error";
+            return res.status(500).json({'errorMessage':errorMessage});
         }
     }
     catch(err)

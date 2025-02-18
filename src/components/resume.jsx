@@ -42,21 +42,11 @@ let Resume = () => {
                         <Text style={[Style.font15]}>| 2020 May - 2021 March</Text>
                     </View>
                     <View style={[Style.collumn,Style.font12]}>
-                        <View style={[Style.row]}>
-                            <Text>• hihihihihihihi</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 11111111111111</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 22222222222222</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 22222222222222</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 22222222222222</Text>
-                        </View>
+                        <Text>• hihihihihihihi</Text>
+                        <Text>• 11111111111111</Text>
+                        <Text>• 22222222222222</Text>
+                        <Text>• 22222222222222</Text>
+                        <Text>• 22222222222222</Text>
                     </View>
                     <View style={[Style.row]}>
                         <Text style={[Style.font15,Style.textDark]}>Software Development Engineer </Text>
@@ -64,21 +54,11 @@ let Resume = () => {
                         <Text style={[Style.font15]}>| 2020 May - 2021 March</Text>
                     </View>
                     <View style={[Style.collumn,Style.font12]}>
-                        <View style={[Style.row]}>
-                            <Text>• hihihihihihihi</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 11111111111111</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 22222222222222</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 22222222222222</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 22222222222222</Text>
-                        </View>
+                        <Text>• hihihihihihihi</Text>
+                        <Text>• 11111111111111</Text>
+                        <Text>• 22222222222222</Text>
+                        <Text>• 22222222222222</Text>
+                        <Text>• 22222222222222</Text>
                     </View>
                     <View style={[Style.row]}>
                         <Text style={[Style.font15,Style.textDark]}>Software Development Engineer </Text>
@@ -86,82 +66,42 @@ let Resume = () => {
                         <Text style={[Style.font15]}>| 2020 May - 2021 March</Text>
                     </View>
                     <View style={[Style.collumn,Style.font12]}>
-                        <View style={[Style.row]}>
-                            <Text>• hihihihihihihi</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 11111111111111</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 22222222222222</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 22222222222222</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 22222222222222</Text>
-                        </View>
+                        <Text>• hihihihihihihi</Text>
+                        <Text>• 11111111111111</Text>
+                        <Text>• 22222222222222</Text>
+                        <Text>• 22222222222222</Text>
+                        <Text>• 22222222222222</Text>
                     </View>
                     <Text style={[Style.textDark,Style.font20]}>Projects</Text>
                     <View style={[Style.row]}>
                         <Text style={[Style.font15,Style.textDark]}>Project Name</Text>
                     </View>
                     <View style={[Style.collumn,Style.font12]}>
-                        <View style={[Style.row]}>
-                            <Text>• hihihihihihihi</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 11111111111111</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 22222222222222</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 22222222222222</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 22222222222222</Text>
-                        </View>
+                        <Text>• hihihihihihihi</Text>
+                        <Text>• 11111111111111</Text>
+                        <Text>• 22222222222222</Text>
+                        <Text>• 22222222222222</Text>
+                        <Text>• 22222222222222</Text>
                     </View>
                     <View style={[Style.row]}>
                         <Text style={[Style.font15,Style.textDark]}>Project Name</Text>
                     </View>
                     <View style={[Style.collumn,Style.font12]}>
-                        <View style={[Style.row]}>
-                            <Text>• hihihihihihihi</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 11111111111111</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 22222222222222</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 22222222222222</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 22222222222222</Text>
-                        </View>
+                        <Text>• hihihihihihihi</Text>
+                        <Text>• 11111111111111</Text>
+                        <Text>• 22222222222222</Text>
+                        <Text>• 22222222222222</Text>
+                        <Text>• 22222222222222</Text>
                     </View>
                     <View style={[Style.row]}>
                         <Text style={[Style.font15,Style.textDark]}>Project Name</Text>
                     </View>
                     <View style={[Style.collumn,Style.font12]}>
-                        <View style={[Style.row]}>
-                            <Text>• hihihihihihihi</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 11111111111111</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 22222222222222</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 22222222222222</Text>
-                        </View>
-                        <View style={[Style.row]}>
-                            <Text>• 22222222222222</Text>
-                        </View>
+                        <Text>• hihihihihihihi</Text>
+                        <Text>• 11111111111111</Text>
+                        <Text>• 22222222222222</Text>
+                        <Text>• 22222222222222</Text>
+                        <Text>• 22222222222222</Text>
                     </View>
                 </View>
             </Page>

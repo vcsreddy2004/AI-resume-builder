@@ -1,5 +1,6 @@
 import axios from "axios";
-class UserSerVice {
+axios.defaults.headers.post["Content-Type"] = "application/json";
+class UserService {
     static register(data)
     {
         let url = "http://127.0.0.1:5500/api/user/register";
@@ -13,7 +14,7 @@ class UserSerVice {
     static getUserData(data)
     {
         let url = "http://127.0.0.1:5500/api/user/get-user-data";
-        return axios.post(url,data);
+        return axios.post(url,{},data);
     }
 }
-export default UserSerVice;
+export default UserService;

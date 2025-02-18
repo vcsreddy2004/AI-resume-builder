@@ -8,12 +8,11 @@ let LogIn = ()=>{
     let [errorMessage,setErrorMessage] = useState("");
     let [passwordView, setPasswordView] = useState(false);
     useEffect(()=>{
-        let user = {
-            token:localStorage.getItem("userToken")
-        }
-        if(user.token)
+        
+        let userData = { headers: {x_auth: localStorage.getItem("userToken")} };
+        if(userData.headers.x_auth)
         {
-            UserSerVice.getUserData(user).then((res)=>{
+            UserSerVice.getUserData(userData).then((res)=>{
                 window.location.href = "/";
             }).catch((err)=>{
                 localStorage.removeItem("userToken");
