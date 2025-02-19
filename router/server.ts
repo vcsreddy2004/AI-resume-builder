@@ -3,10 +3,12 @@ import config from "./config";
 import cors from "cors";
 import mongoose from "mongoose";
 import userRouter from "./router/userRouter";
+import resumeRouter from "./router/resumeRouter";
 let app:express.Application = express();
 app.use(cors());
 app.use(express.json());
 app.use("/api/user",userRouter);
+app.use("/api/resume",resumeRouter);
 if(config.MONGO_DB_URL)
 {
     mongoose.connect(config.MONGO_DB_URL).then((res)=>{

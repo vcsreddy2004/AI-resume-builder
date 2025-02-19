@@ -10,10 +10,10 @@ const Register = () => {
         confirmPassword:""
     });
     useEffect(()=>{
-        let userData = { headers: {x_auth: localStorage.getItem("userToken")} };
-        if(userData.headers.x_auth)
+        let token = localStorage.getItem("userToken");
+        if(token)
         {
-            UserSerVice.getUserData(userData).then((res)=>{
+            UserSerVice.getUserData(token).then((res)=>{
                 window.location.href = "/";
             }).catch((err)=>{
                 localStorage.removeItem("userToken");

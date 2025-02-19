@@ -11,10 +11,10 @@ class UserService {
         let url = "http://127.0.0.1:5500/api/user/login";
         return axios.post(url,data);
     }
-    static getUserData(data)
+    static getUserData(token)
     {
         let url = "http://127.0.0.1:5500/api/user/get-user-data";
-        return axios.post(url,{},data);
+        return axios.post(url,{},{ headers: {x_auth:token} });
     }
 }
 export default UserService;

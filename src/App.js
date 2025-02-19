@@ -10,6 +10,7 @@ import LogIn from './components/login';
 import Register from './components/register';
 import LogOut from './components/logout';
 import ProtectedRoute from './components/protectedRoute';
+import ResumeList from './components/resumeList';
 function App() {
   return (
     <>
@@ -23,6 +24,7 @@ function App() {
             <Route path='/' element={<ResumeForm />}></Route>
             <Route path='/profile' element={<Profile/>}></Route>
             <Route path='/view-resume' element={<ViewResume/>}></Route>
+            <Route path='/resume-list' element={<ResumeList></ResumeList>}></Route>
           </Route>
           <Route path='*' element={<Navigate to="/login" />}></Route>
         </Routes>

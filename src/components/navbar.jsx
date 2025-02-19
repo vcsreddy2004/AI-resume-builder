@@ -4,10 +4,10 @@ import "./navbar.css"
 let Navbar = () =>{
     let [isLogIn,setLogIn] = useState(false);
     useEffect(()=>{
-        let userData = { headers: {x_auth: localStorage.getItem("userToken")} };
-        if(userData.headers.x_auth)
+        let token = localStorage.getItem("userToken");
+        if(token)
         {
-            UserSerVice.getUserData(userData).then((res)=>{
+            UserSerVice.getUserData(token).then((res)=>{
                 setLogIn(true)
             }).catch((err)=>{
                 localStorage.removeItem("userToken");
@@ -24,8 +24,8 @@ let Navbar = () =>{
                         </a>
                     </div>
                     <div className="nav-item">
-                        <a href="/view-resume" className="nav-link">
-                            view resume
+                        <a href="/resume-list" className="nav-link">
+                            resumes
                         </a>
                     </div>
                 </div>

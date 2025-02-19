@@ -46,7 +46,7 @@ const AuthLogin = async (req:express.Request,res:express.Response,next:express.N
                             lastLogIn:user.lastLogIn,
                             token:""
                         }
-                        req.body = userData;
+                        req.body.user = userData;
                         next();
                     }
                 }

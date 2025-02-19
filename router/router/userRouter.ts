@@ -145,13 +145,13 @@ userRouter.post("/get-user-data",AuthLogin,async(req:express.Request,res:express
     try
     {
         let userData:UserView = {
-            firstName:req.body.firstName,
-            lastName:req.body.lastName,
-            email:req.body.email,
-            userName:req.body.userName,
+            firstName:req.body.user.firstName,
+            lastName:req.body.user.lastName,
+            email:req.body.user.email,
+            userName:req.body.user.userName,
             password:"",
             token:"",
-            lastLogIn:req.body.lastLogIn,
+            lastLogIn:req.body.user.lastLogIn,
             errorMessage:""
         }
         return res.status(200).json(userData);

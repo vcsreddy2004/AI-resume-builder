@@ -9,10 +9,10 @@ const Profile = () => {
         userName:"",
     });
     useEffect(()=>{
-        let userData = { headers: {x_auth: localStorage.getItem("userToken")} };
-        if(userData.headers.x_auth)
+        let token = localStorage.getItem("userToken");
+        if(token)
         {
-            UserSerVice.getUserData(userData).then((res)=>{
+            UserSerVice.getUserData(token).then((res)=>{
                 setUser(prev=>({
                     firstName:res.data.firstName,
                     lastName:res.data.lastName,

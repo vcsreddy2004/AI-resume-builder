@@ -1,5 +1,6 @@
 import { useState } from "react";
-
+import ResumeService from "../servises/ResumeService";
+import { useNavigate } from "react-router-dom";
 let ResumeForm = () => {
     let [resumeData,setResumeData] = useState({
         name:"",
@@ -50,6 +51,7 @@ let ResumeForm = () => {
     let [showMasters,setShowMasters] = useState(null);
     let [experienceCount, setExperienceCount] = useState(0);
     let [projectsCount, setProjectCount] = useState(0);
+    let navigate = useNavigate();
     let setExperienceCounter = (event) => {
         if(experienceCount<3)
         {
@@ -87,10 +89,23 @@ let ResumeForm = () => {
             [event.target.name]:event.target.value,
         }));
     }
+    let submit=()=>{
+        let token = localStorage.getItem("userToken");
+        if(token)
+        {   let resume = {
+                "resume":resumeData
+            }
+            ResumeService.upload(resume,token).then(()=>{
+                navigate("/view-resume");
+            }).catch((err)=>{
+                alert(err);
+            });
+        }
+    }
     return (
         <>
             <div className="container mt-5">
-                <div className="card shadow-lg">
+                <div className="card shadow-lg mb-5">
                     <div className="card-header">
                         Resume Form
                     </div>
@@ -101,24 +116,26 @@ let ResumeForm = () => {
                             </div>
                             <div className="card-body">
                                 <table className="col-md-12">
-                                    <tr>
-                                        <td className="col-md-6">
-                                            <span>Name <br /></span>
-                                            <input type="text" name="name" onChange={updateResumeData} placeholder="Enter your name" className="col-md-12" />
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            <span>Phone Nummber <br /></span>
-                                            <input type="number" name="phNumber" onChange={checkPhoneNumber} placeholder="Enter your Phone number" className="col-md-12" />
-                                            <span id="phNumberCount">{resumeData.phNumber.length}</span>/10
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span>Email <br /></span>
-                                            <input type="email" name="email" onChange={updateResumeData} placeholder="Enter your email address" className="col-md-12" />
-                                        </td>
-                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <td className="col-md-6">
+                                                <span>Name <br /></span>
+                                                <input type="text" name="name" onChange={updateResumeData} placeholder="Enter your name" className="col-md-12" />
+                                                &nbsp;
+                                            </td>
+                                            <td>
+                                                <span>Phone Nummber <br /></span>
+                                                <input type="number" name="phNumber" onChange={checkPhoneNumber} placeholder="Enter your Phone number" className="col-md-12" />
+                                                <span id="phNumberCount">{resumeData.phNumber.length}</span>/10
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span>Email <br /></span>
+                                                <input type="email" name="email" onChange={updateResumeData} placeholder="Enter your email address" className="col-md-12" />
+                                            </td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -128,22 +145,24 @@ let ResumeForm = () => {
                             </div>
                             <div className="card-body">
                                 <table className="col-md-12">
-                                    <tr>
-                                        <td className="col-md-6">
-                                            <span>Programming Languages <br /></span>
-                                            <input type="text" name="programingLanguages" onChange={updateResumeData} placeholder="ex:- c,c++,java..." className="col-md-12" />
-                                        </td>
-                                        <td>
-                                            <span>Tech Stack <br /></span>
-                                            <input type="text" name="techStack" onChange={updateResumeData} placeholder="ex:- Django, spring boot..." className="col-md-12" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span>Tools <br /></span>
-                                            <input type="text" name="tools" onChange={updateResumeData} placeholder="ex:- git,jira,ubantu..." className="col-md-12" />
-                                        </td>
-                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <td className="col-md-6">
+                                                <span>Programming Languages <br /></span>
+                                                <input type="text" name="programingLanguages" onChange={updateResumeData} placeholder="ex:- c,c++,java..." className="col-md-12" />
+                                            </td>
+                                            <td>
+                                                <span>Tech Stack <br /></span>
+                                                <input type="text" name="techStack" onChange={updateResumeData} placeholder="ex:- Django, spring boot..." className="col-md-12" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span>Tools <br /></span>
+                                                <input type="text" name="tools" onChange={updateResumeData} placeholder="ex:- git,jira,ubantu..." className="col-md-12" />
+                                            </td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -171,38 +190,40 @@ let ResumeForm = () => {
                                         </div>
                                         <div className="card-body">
                                             <table className="col-md-12">
-                                                <tr>
-                                                    <td className="col-md-6">
-                                                        <span>Type <br /></span>
-                                                        <select name="masterType" onChange={updateResumeData} className="col-md-12">
-                                                            <option value="" disabled selected>
-                                                                Select your degree
-                                                            </option>
-                                                            <option value="MTech">MTech</option>
-                                                            <option value="MSc">MSc</option>
-                                                            <option value="MBA">MBA</option>
-                                                            <option value="MA">MA</option>
-                                                            <option value="Other">Other</option>
-                                                        </select>
-                                                    </td>
-                                                    <td>
-                                                        <span>collage Name <br /></span>
-                                                        <input type="text" name="masterCollageName" onChange={updateResumeData} className="col-md-12" />
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <span>Branch <br /></span>
-                                                        <input type="text" name="masterBranch" onChange={updateResumeData} className="col-md-12" />
-                                                    </td>
-                                                    <td> 
-                                                        <input type="radio" id="CGPA" name="masterResultType" value="CGPA" onChange={updateResumeData} />
-                                                        <label htmlFor="CGPA">CGPA</label>
-                                                        <input type="radio" id="percentage" name="masterResultType" value="Percentage" onChange={updateResumeData} />
-                                                        <label htmlFor="percentage">Percentage</label>
-                                                        <input type="email" name="masterResults" onChange={updateResumeData} className="col-md-12" />
-                                                    </td>
-                                                </tr>
+                                                <tbody>
+                                                    <tr>
+                                                        <td className="col-md-6">
+                                                            <span>Type <br /></span>
+                                                            <select name="masterType" onChange={updateResumeData} className="col-md-12">
+                                                                <option value="" disabled selected>
+                                                                    Select your degree
+                                                                </option>
+                                                                <option value="MTech">MTech</option>
+                                                                <option value="MSc">MSc</option>
+                                                                <option value="MBA">MBA</option>
+                                                                <option value="MA">MA</option>
+                                                                <option value="Other">Other</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <span>collage Name <br /></span>
+                                                            <input type="text" name="masterCollageName" onChange={updateResumeData} className="col-md-12" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span>Branch <br /></span>
+                                                            <input type="text" name="masterBranch" onChange={updateResumeData} className="col-md-12" />
+                                                        </td>
+                                                        <td> 
+                                                            <input type="radio" id="CGPA" name="masterResultType" value="CGPA" onChange={updateResumeData} />
+                                                            <label htmlFor="CGPA">CGPA</label>
+                                                            <input type="radio" id="percentage" name="masterResultType" value="Percentage" onChange={updateResumeData} />
+                                                            <label htmlFor="percentage">Percentage</label>
+                                                            <input type="email" name="masterResults" onChange={updateResumeData} className="col-md-12" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
                                             </table>
                                         </div>
                                     </div>
@@ -213,38 +234,40 @@ let ResumeForm = () => {
                                     </div>
                                     <div className="card-body">
                                         <table className="col-md-12">
-                                            <tr>
-                                                <td className="col-md-6">
-                                                    <span>Type <br /></span>
-                                                    <select name="bachelorType" onChange={updateResumeData} className="col-md-12">
-                                                        <option value="" disabled selected>
-                                                            Select your bachelor's degree
-                                                        </option>
-                                                        <option value="BTech">BTech</option>
-                                                        <option value="BSc">BSc</option>
-                                                        <option value="BBA">BBA</option>
-                                                        <option value="BA">BA</option>
-                                                        <option value="Other">Other</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <span>collage Name <br /></span>
-                                                    <input type="text" name="bachelorCollageName" onChange={updateResumeData} className="col-md-12" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span>Branch <br /></span>
-                                                    <input type="text" name="bachelorBranch" onChange={updateResumeData} className="col-md-12" />
-                                                </td>
-                                                <td> 
-                                                    <input type="radio" id="CGPA" name="bachelorResultType" value="CGPA" onChange={updateResumeData} />
-                                                    <label htmlFor="CGPA">CGPA</label>
-                                                    <input type="radio" id="percentage" name="bachelorResultType" value="Percentage" onChange={updateResumeData} />
-                                                    <label htmlFor="percentage">Percentage</label>
-                                                    <input type="email" name="bachelorResult" onChange={updateResumeData} className="col-md-12" />
-                                                </td>
-                                            </tr>
+                                            <tbody>
+                                                <tr>
+                                                    <td className="col-md-6">
+                                                        <span>Type <br /></span>
+                                                        <select name="bachelorType" onChange={updateResumeData} className="col-md-12">
+                                                            <option value="" disabled selected>
+                                                                Select your bachelor's degree
+                                                            </option>
+                                                            <option value="BTech">BTech</option>
+                                                            <option value="BSc">BSc</option>
+                                                            <option value="BBA">BBA</option>
+                                                            <option value="BA">BA</option>
+                                                            <option value="Other">Other</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <span>collage Name <br /></span>
+                                                        <input type="text" name="bachelorCollageName" onChange={updateResumeData} className="col-md-12" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span>Branch <br /></span>
+                                                        <input type="text" name="bachelorBranch" onChange={updateResumeData} className="col-md-12" />
+                                                    </td>
+                                                    <td> 
+                                                        <input type="radio" id="CGPA" name="bachelorResultType" value="CGPA" onChange={updateResumeData} />
+                                                        <label htmlFor="CGPA">CGPA</label>
+                                                        <input type="radio" id="percentage" name="bachelorResultType" value="Percentage" onChange={updateResumeData} />
+                                                        <label htmlFor="percentage">Percentage</label>
+                                                        <input type="email" name="bachelorResult" onChange={updateResumeData} className="col-md-12" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -254,35 +277,37 @@ let ResumeForm = () => {
                                     </div>
                                     <div className="card-body">
                                         <table className="col-md-12">
-                                            <tr>
-                                                <td className="col-md-6">
-                                                    <span>Type <br /></span>
-                                                    <select name="diplomaType" onChange={updateResumeData} className="col-md-12" >
-                                                        <option value="" disabled selected>
-                                                            Select your bachelor's degree
-                                                        </option>
-                                                        <option value="Diploma">Diploma</option>
-                                                        <option value="Intermediate">Intermediate</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <span>collage Name <br /></span>
-                                                    <input type="text" name="diplomaCollageName" onChange={updateResumeData} className="col-md-12" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span>Branch <br /></span>
-                                                    <input type="text" name="diplomaBranch" onChange={updateResumeData} className="col-md-12" />
-                                                </td>
-                                                <td> 
-                                                    <input type="radio" id="CGPA" name="diplomaResultType" value="CGPA" onChange={updateResumeData} />
-                                                    <label htmlFor="CGPA">CGPA</label>
-                                                    <input type="radio" id="percentage" name="diplomaResultType" value="Percentage" onChange={updateResumeData} />
-                                                    <label htmlFor="percentage">Percentage</label>
-                                                    <input type="email" name="diplomaResult" onChange={updateResumeData} className="col-md-12" />
-                                                </td>
-                                            </tr>
+                                            <tbody>
+                                                <tr>
+                                                    <td className="col-md-6">
+                                                        <span>Type <br /></span>
+                                                        <select name="diplomaType" onChange={updateResumeData} className="col-md-12" >
+                                                            <option value="" disabled selected>
+                                                                Select your bachelor's degree
+                                                            </option>
+                                                            <option value="Diploma">Diploma</option>
+                                                            <option value="Intermediate">Intermediate</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <span>collage Name <br /></span>
+                                                        <input type="text" name="diplomaCollageName" onChange={updateResumeData} className="col-md-12" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span>Branch <br /></span>
+                                                        <input type="text" name="diplomaBranch" onChange={updateResumeData} className="col-md-12" />
+                                                    </td>
+                                                    <td> 
+                                                        <input type="radio" id="CGPA" name="diplomaResultType" value="CGPA" onChange={updateResumeData} />
+                                                        <label htmlFor="CGPA">CGPA</label>
+                                                        <input type="radio" id="percentage" name="diplomaResultType" value="Percentage" onChange={updateResumeData} />
+                                                        <label htmlFor="percentage">Percentage</label>
+                                                        <input type="email" name="diplomaResult" onChange={updateResumeData} className="col-md-12" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -383,6 +408,7 @@ let ResumeForm = () => {
                             </div>
                         </div>
                     </div>
+                    <input type="button" value="Submitt" onClick={submit} className="btn btn-success col-md-6 m-auto text-white mb-3 border-0" />
                 </div>
             </div>
         </>
