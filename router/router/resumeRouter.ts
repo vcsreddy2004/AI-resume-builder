@@ -11,6 +11,15 @@ resumeRouter.post("/upload",AuthLogin,async(req:express.Request,res:express.Resp
             ...resumeData,
             userName: req.body.user.userName
         };
+        if(resumeData.resumeTitle == "" || !resumeData.resumeTitle)
+        {
+            return res.status(400).json({'errorMessage':"resume title can not left empty"});
+        }
+        let data = await model.findOne({resumeTitle:resumeData.resumeTitle,userName:resumeData.userName});
+        if(data)
+        {
+            return res.status(400).json({'errorMessage':"resume title already included"});
+        }
         await model.create(resumeData);
         return res.status(200).json({'errorMessage':""});
     }

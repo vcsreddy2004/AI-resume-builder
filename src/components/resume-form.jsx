@@ -47,10 +47,12 @@ let ResumeForm = () => {
         project2Descreption:"",
         project3Name:"",
         project3Descreption:"",
+        resumeTitle:"",
     });
     let [showMasters,setShowMasters] = useState(null);
     let [experienceCount, setExperienceCount] = useState(0);
     let [projectsCount, setProjectCount] = useState(0);
+    let [resumeTitleError,setResumeTitleError] = useState("");
     let navigate = useNavigate();
     let setExperienceCounter = (event) => {
         if(experienceCount<3)
@@ -96,9 +98,9 @@ let ResumeForm = () => {
                 "resume":resumeData
             }
             ResumeService.upload(resume,token).then(()=>{
-                navigate("/view-resume");
+                navigate("/resume-list");
             }).catch((err)=>{
-                alert(err);
+                setResumeTitleError(()=>(err.response.data.errorMessage));
             });
         }
     }
@@ -110,7 +112,7 @@ let ResumeForm = () => {
                         Resume Form
                     </div>
                     <div className="card-body">
-                        <div className="card col-md-12">
+                        <div className="card col-md-12 shadow-lg">
                             <div className="card-header bg-dark text-white">
                                 Personal data
                             </div>
@@ -139,7 +141,7 @@ let ResumeForm = () => {
                                 </table>
                             </div>
                         </div>
-                        <div className="card col-md-12">
+                        <div className="card col-md-12 shadow-lg mt-3">
                             <div className="card-header bg-dark text-white">
                                 Skills
                             </div>
@@ -166,7 +168,7 @@ let ResumeForm = () => {
                                 </table>
                             </div>
                         </div>
-                        <div className="card col-md-12">
+                        <div className="card col-md-12 shadow-lg mt-3">
                             <div className="card-header bg-dark text-white">
                                 Education
                             </div>
@@ -184,7 +186,7 @@ let ResumeForm = () => {
                                     </label>
                                 </div>
                                 {showMasters && (
-                                    <div className="card">
+                                    <div className="card shadow-lg mt-3">
                                         <div className="card-header bg-dark text-white">
                                             Masters
                                         </div>
@@ -228,7 +230,7 @@ let ResumeForm = () => {
                                         </div>
                                     </div>
                                 )}
-                                <div className="card">
+                                <div className="card shadow-lg mt-3">
                                     <div className="card-header bg-dark text-white">
                                         Bachelors
                                     </div>
@@ -271,7 +273,7 @@ let ResumeForm = () => {
                                         </table>
                                     </div>
                                 </div>
-                                <div className="card">
+                                <div className="card shadow-lg mt-3">
                                     <div className="card-header bg-dark text-white">
                                         Diploma / Intermediate
                                     </div>
@@ -313,13 +315,13 @@ let ResumeForm = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="card col-md-12">
+                        <div className="card col-md-12 shadow-lg mt-3">
                             <div className="card-header bg-dark text-white">
                                 Experience
                             </div>
                             <div className="card-body">
                             {Array.from({ length: experienceCount }, (_, i) => (
-                                <div className="card">
+                                <div className="card shadow-lg mt-3">
                                     <div className="card-header bg-dark text-white">
                                         Experience {i+1}
                                     </div>
@@ -374,13 +376,13 @@ let ResumeForm = () => {
                                 <input type="button" value="+ Add" onClick={setExperienceCounter} className="bg-success text-white border-0" />
                             </div>
                         </div>
-                        <div className="card col-md-12">
+                        <div className="card col-md-12 shadow-lg mt-3">
                             <div className="card-header bg-dark text-white">
                                 Projects
                             </div>
                             <div className="card-body">
                             {Array.from({ length: projectsCount }, (_, i) => (
-                                <div className="card">
+                                <div className="card shadow-lg mt-3">
                                     <div className="card-header bg-dark text-white">
                                         Project {i+1}
                                     </div>
@@ -406,6 +408,16 @@ let ResumeForm = () => {
                             ))}
                                 <input type="button" value="+ Add" onClick={setProjectCounter} className="bg-success text-white border-0" />
                             </div>
+                        </div>
+                    </div>
+                    <div className="card col-md-12 shadow-lg mt-3">
+                        <div className="card-header bg-dark text-white">
+                            Resume Title
+                        </div>
+                        <div className="card-body">
+                            <span>Enter Resume Title</span>
+                            <input type="text" name='resumeTitle' onChange={updateResumeData} placeholder="resume title should be unique" className="col-md-12" />
+                            <span className="text-danger">{resumeTitleError}</span>
                         </div>
                     </div>
                     <input type="button" value="Submitt" onClick={submit} className="btn btn-success col-md-6 m-auto text-white mb-3 border-0" />
