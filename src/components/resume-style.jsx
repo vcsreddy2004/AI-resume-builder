@@ -31,7 +31,7 @@ export const Style = StyleSheet.create({
     font15: {
         fontSize:15,
     },
-    font50: {
-        fontSize:50,
+    font45: {
+        fontSize:45,
     },
 });

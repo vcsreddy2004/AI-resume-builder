@@ -20,10 +20,10 @@ function App() {
           <Route path='/logout' Component={LogOut}></Route>
           <Route path='/login' Component={LogIn}></Route>
           <Route path='/register' Component={Register}></Route>
-          <Route element={<ProtectedRoute />}>
+          <Route element={<ProtectedRoute />}>  
             <Route path='/' element={<ResumeForm />}></Route>
             <Route path='/profile' element={<Profile/>}></Route>
-            <Route path='/view-resume' element={<ViewResume/>}></Route>
+            <Route exact path='/view-resume/:resumeId' element={<ViewResume/>}></Route>
             <Route path='/resume-list' element={<ResumeList></ResumeList>}></Route>
           </Route>
           <Route path='*' element={<Navigate to="/login" />}></Route>

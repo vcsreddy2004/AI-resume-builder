@@ -31,13 +31,13 @@ userRouter.post("/register",async(req:express.Request,res:express.Response)=>{
         {
             userData = {} as UserView;
             userData.errorMessage = "user name and password is same";
-            return res.status(400).json(userData);
+            return res.status(401).json(userData);
         }
         else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userData.email))
         {
             userData = {} as UserView;
             userData.errorMessage = "invalid email id";
-            return res.status(400).json(userData);         
+            return res.status(401).json(userData);         
         }
         else
         {
@@ -126,7 +126,7 @@ userRouter.post("/login",async(req:express.Request,res:express.Response)=>{
             {
                 userData = {} as UserView;
                 userData.errorMessage = "Invalid password";
-                return res.status(400).json(userData);
+                return res.status(401).json(userData);
             }
         }
         else

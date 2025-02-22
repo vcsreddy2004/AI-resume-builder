@@ -1,40 +1,46 @@
 import React from "react";
 import { Document,Page,View,Text} from "@react-pdf/renderer";
 import { Style } from "./resume-style";
-let Resume = () => {
-
+const Resume = (props) => {
+    let {resumeData} = props;
     return (
-        <Document title="Resume preview">
+        <Document title={resumeData.resumeTitle}>
             <Page wrap>
                 <View wrap={false} style={Style.PaddingLeft} >
-                    <Text style={[Style.textLight,Style.textCenter,Style.font50]}>Dummy Name</Text>
-                    <Text style={[Style.textCenter,Style.font12]}>91 XXXXX XXXXX | abcdef@gmail.com</Text>
+                    <Text style={[Style.textLight,Style.textCenter,Style.font45]}>{resumeData.name}</Text>
+                    <Text style={[Style.textCenter,Style.font12]}>91 {resumeData.phNumber} | {resumeData.email}</Text>
                     <Text style={[Style.textDark,Style.font20]}>Skills</Text>
                     <View style={[Style.row]}>
                         <Text style={[Style.font12,Style.textDark]}>Programming Languages: </Text>
-                        <Text style={[Style.font12]}> C, C++, Java, Python</Text>
+                        <Text style={[Style.font12]}>{resumeData.programingLanguages}</Text>
                     </View>
                     <View style={[Style.row]}>
                         <Text style={[Style.font12,Style.textDark]}>Tech Stack: </Text>
-                        <Text style={[Style.font12]}> Mern, Django, Ruby on rails</Text>
+                        <Text style={[Style.font12]}>{resumeData.techStack}</Text>
                     </View>
                     <View style={[Style.row]}>
                         <Text style={[Style.font12,Style.textDark]}>Tools: </Text>
-                        <Text style={[Style.font12]}> Git, Jira</Text>
+                        <Text style={[Style.font12]}>{resumeData.tools}</Text>
                     </View>
                     <Text style={[Style.textDark,Style.font20]}>Education</Text>
+                    {resumeData.masterType && (
+                        <View style={[Style.row]}>
+                            <Text style={[Style.font12,Style.textDark]}>{resumeData.masterType} </Text>
+                            <Text style={[Style.font12]}>| {resumeData.masterBranch} | {resumeData.masterCollageName} | {resumeData.masterResults} {resumeData.masterResultType}</Text>
+                        </View>
+                    )}
                     <View style={[Style.row]}>
-                        <Text style={[Style.font12,Style.textDark]}>Bachelor of Technology </Text>
-                        <Text style={[Style.font12]}>| AIML | Acharya Nagarjuna University | 9.85 CGPA</Text>
+                        <Text style={[Style.font12,Style.textDark]}>{resumeData.bachelorType    } </Text>
+                        <Text style={[Style.font12]}>| {resumeData.bachelorBranch} | {resumeData.bachelorCollageName} | {resumeData.bachelorResult} {resumeData.bachelorResultType}</Text>
                     </View>
                     <View style={[Style.row]}>
-                        <Text style={[Style.font12,Style.textDark]}>Diploma </Text>
-                        <Text style={[Style.font12]}>| SBTET | St Marys's Group Of Institutions | Web Designing | 80.25%</Text>
+                        <Text style={[Style.font12,Style.textDark]}>{resumeData.diplomaType} </Text>
+                        <Text style={[Style.font12]}>{resumeData.diplomaCollageName} | {resumeData.diplomaBranch} | {resumeData.diplomaResult} {resumeData.diplomaResultType}</Text>
                     </View>
-                    <View style={[Style.row]}>
+                    {/* <View style={[Style.row]}>
                         <Text style={[Style.font12,Style.textDark]}>10th </Text>
                         <Text style={[Style.font12]}>| SSC | Sri Chaitanya Techo Sckool | 100%</Text>
-                    </View>
+                    </View> */}
                     <Text style={[Style.textDark,Style.font20]}>Experience</Text>
                     <View style={[Style.row]}>
                         <Text style={[Style.font15,Style.textDark]}>Software Development Engineer </Text>
