@@ -15,13 +15,13 @@ let ResumeList = () =>{
                 navigator("/login");
             })
         }
-    });
+    }, []);
     return (
         <>
             <div className="container">
                 <div className="row mt-5">
                     {resumeList && resumeList.map((data) => (
-                        <div key={data.resumeTitle} className="card col-md-3 p-0 border-3 shadow-lg mx-3">
+                        <div key={data.resumeTitle} className="card col-md-3 p-0 border-3 mx-3"  onClick={() => navigator(`/view-resume/${data._id}`)}>
                             <div className="card-header p-0 m-0 row align-items-center">
                                 <img src={pdfLogo} height='50px' className="col-md-2 m-0 p-0" alt="pdf" />
                                 <div className="col-md-10">

@@ -41,74 +41,80 @@ const Resume = (props) => {
                         <Text style={[Style.font12,Style.textDark]}>10th </Text>
                         <Text style={[Style.font12]}>| SSC | Sri Chaitanya Techo Sckool | 100%</Text>
                     </View> */}
-                    <Text style={[Style.textDark,Style.font20]}>Experience</Text>
-                    <View style={[Style.row]}>
-                        <Text style={[Style.font15,Style.textDark]}>Software Development Engineer </Text>
-                        <Text style={[Style.font15]}>| Amazon | Banglore India </Text>
-                        <Text style={[Style.font15]}>| 2020 May - 2021 March</Text>
-                    </View>
-                    <View style={[Style.collumn,Style.font12]}>
-                        <Text>• hihihihihihihi</Text>
-                        <Text>• 11111111111111</Text>
-                        <Text>• 22222222222222</Text>
-                        <Text>• 22222222222222</Text>
-                        <Text>• 22222222222222</Text>
-                    </View>
-                    <View style={[Style.row]}>
-                        <Text style={[Style.font15,Style.textDark]}>Software Development Engineer </Text>
-                        <Text style={[Style.font15]}>| Amazon | Banglore India </Text>
-                        <Text style={[Style.font15]}>| 2020 May - 2021 March</Text>
-                    </View>
-                    <View style={[Style.collumn,Style.font12]}>
-                        <Text>• hihihihihihihi</Text>
-                        <Text>• 11111111111111</Text>
-                        <Text>• 22222222222222</Text>
-                        <Text>• 22222222222222</Text>
-                        <Text>• 22222222222222</Text>
-                    </View>
-                    <View style={[Style.row]}>
-                        <Text style={[Style.font15,Style.textDark]}>Software Development Engineer </Text>
-                        <Text style={[Style.font15]}>| Amazon | Banglore India </Text>
-                        <Text style={[Style.font15]}>| 2020 May - 2021 March</Text>
-                    </View>
-                    <View style={[Style.collumn,Style.font12]}>
-                        <Text>• hihihihihihihi</Text>
-                        <Text>• 11111111111111</Text>
-                        <Text>• 22222222222222</Text>
-                        <Text>• 22222222222222</Text>
-                        <Text>• 22222222222222</Text>
-                    </View>
+                    {resumeData.experienceRole1 && (
+                        <>
+                            <Text style={[Style.textDark,Style.font20]}>Experience</Text>
+                            <View style={[Style.row]}>
+                                <Text style={[Style.font15,Style.textDark]}>{resumeData.experienceRole1} </Text>
+                                <Text style={[Style.font15]}>| {resumeData.experienceCompany1} | {resumeData.experienceLocation1} </Text>
+                                <Text style={[Style.font15]}>| {resumeData.experience1StartDate} - {resumeData.experience1StartDate} </Text>
+                            </View>
+                            <View style={[Style.collumn,Style.font12]}>
+                                <Text>
+                                    {resumeData.experience1Descreption}
+                                </Text>
+                            </View>
+                        </>
+                    )}
+                    {resumeData.experienceRole2 && (
+                        <>
+                            <View style={[Style.row]}>
+                                <Text style={[Style.font15,Style.textDark]}>{resumeData.experienceRole2} </Text>
+                                <Text style={[Style.font15]}>| {resumeData.experienceCompany2} | {resumeData.experienceLocation2} </Text>
+                                <Text style={[Style.font15]}>| {resumeData.experience2StartDate} - {resumeData.experience2StartDate} </Text>
+                            </View>
+                            <View style={[Style.collumn,Style.font12]}>
+                                <Text>
+                                    {resumeData.experience2Descreption}
+                                </Text>
+                            </View>
+                        </>
+                    )}
+                    {resumeData.experienceRole3 && (
+                        <>
+                            <View style={[Style.row]}>
+                                <Text style={[Style.font15,Style.textDark]}>{resumeData.experienceRole3} </Text>
+                                <Text style={[Style.font15]}>| {resumeData.experienceCompany3} | {resumeData.experienceLocation3} </Text>
+                                <Text style={[Style.font15]}>| {resumeData.experience3StartDate} - {resumeData.experience3StartDate} </Text>
+                            </View>
+                            <View style={[Style.collumn,Style.font12]}>
+                                <Text>
+                                    {resumeData.experience3Descreption}
+                                </Text>
+                            </View>
+                        </>
+                    )}
                     <Text style={[Style.textDark,Style.font20]}>Projects</Text>
-                    <View style={[Style.row]}>
-                        <Text style={[Style.font15,Style.textDark]}>Project Name</Text>
-                    </View>
-                    <View style={[Style.collumn,Style.font12]}>
-                        <Text>• hihihihihihihi</Text>
-                        <Text>• 11111111111111</Text>
-                        <Text>• 22222222222222</Text>
-                        <Text>• 22222222222222</Text>
-                        <Text>• 22222222222222</Text>
-                    </View>
-                    <View style={[Style.row]}>
-                        <Text style={[Style.font15,Style.textDark]}>Project Name</Text>
-                    </View>
-                    <View style={[Style.collumn,Style.font12]}>
-                        <Text>• hihihihihihihi</Text>
-                        <Text>• 11111111111111</Text>
-                        <Text>• 22222222222222</Text>
-                        <Text>• 22222222222222</Text>
-                        <Text>• 22222222222222</Text>
-                    </View>
-                    <View style={[Style.row]}>
-                        <Text style={[Style.font15,Style.textDark]}>Project Name</Text>
-                    </View>
-                    <View style={[Style.collumn,Style.font12]}>
-                        <Text>• hihihihihihihi</Text>
-                        <Text>• 11111111111111</Text>
-                        <Text>• 22222222222222</Text>
-                        <Text>• 22222222222222</Text>
-                        <Text>• 22222222222222</Text>
-                    </View>
+                    {resumeData.project1Name && (
+                        <>
+                            <View style={[Style.row]}>
+                                <Text style={[Style.font15,Style.textDark]}>{resumeData.project1Name}</Text>
+                            </View>
+                            <View style={[Style.collumn,Style.font12]}>
+                                <Text>{resumeData.project1Descreption}</Text>
+                            </View>
+                        </>
+                    )}
+                    {resumeData.project2Name && (
+                        <>
+                            <View style={[Style.row]}>
+                                <Text style={[Style.font15,Style.textDark]}>{resumeData.project2Name}</Text>
+                            </View>
+                            <View style={[Style.collumn,Style.font12]}>
+                                <Text>{resumeData.project2Descreption}</Text>
+                            </View>
+                        </>
+                    )}
+                    {resumeData.project3Name && (
+                        <>
+                            <View style={[Style.row]}>
+                                <Text style={[Style.font15,Style.textDark]}>{resumeData.project3Name}</Text>
+                            </View>
+                            <View style={[Style.collumn,Style.font12]}>
+                                <Text>{resumeData.project3Descreption}</Text>
+                            </View>
+                        </>
+                    )}
                 </View>
             </Page>
         </Document>

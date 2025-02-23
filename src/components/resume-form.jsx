@@ -49,6 +49,7 @@ let ResumeForm = () => {
         project3Descreption:"",
         resumeTitle:"",
     });
+    let [loading,setLoading ]= useState(false);
     let [showMasters,setShowMasters] = useState(null);
     let [experienceCount, setExperienceCount] = useState(0);
     let [projectsCount, setProjectCount] = useState(0);
@@ -97,8 +98,57 @@ let ResumeForm = () => {
         {   let resume = {
                 "resume":resumeData
             }
-            ResumeService.upload(resume,token).then(()=>{
-                navigate("/resume-list");
+            if(resumeData.experienceCompany1 !== "")
+            {
+                if(resumeData.experienceLocation1 === "" || resumeData.experience1Descreption === "" || resumeData.experience1StartDate === "" || resumeData.experience1EndDate === "" || resumeData.experienceRole1 === "")
+                {
+                    alert("all expirence feilds must be full");
+                    return;
+                }
+            }
+            if(resumeData.experienceCompany2 !== "")
+            {
+                if(resumeData.experienceLocation2 === "" || resumeData.experience2Descreption === "" || resumeData.experience2StartDate === "" || resumeData.experience2EndDate === "" || resumeData.experienceRole2 === "")
+                {
+                    alert("all expirence feilds must be full");
+                    return;
+                }
+            }
+            if(resumeData.experienceCompany3 !== "")
+            {
+                if(resumeData.experienceLocation3 === "" || resumeData.experience3Descreption === "" || resumeData.experience3StartDate === "" || resumeData.experience3EndDate === "" || resumeData.experienceRole3 === "")
+                {
+                    alert("all expirence feilds must be full");
+                    return;
+                }
+            }
+            if(resumeData.project1Name !== "")
+            {
+                if(resumeData.project1Descreption === "")
+                {
+                    alert("if project name specifed project descreption must specified");
+                    return;
+                }
+            }
+            if(resumeData.project2Name !== "")
+            {
+                if(resumeData.project2Descreption === "")
+                {
+                    alert("if project name specifed project descreption must specified");
+                    return;
+                }
+            }
+            if(resumeData.project3Name !== "")
+            {
+                if(resumeData.project3Descreption === "")
+                {
+                    alert("if project name specifed project descreption must specified");
+                    return;
+                }
+            }
+            setLoading(true);
+            ResumeService.upload(resume,token).then((res)=>{
+                navigate(`/view-resume/${res.data._id}`);
             }).catch((err)=>{
                 setResumeTitleError(()=>(err.response.data.errorMessage));
             });
@@ -106,6 +156,7 @@ let ResumeForm = () => {
     }
     return (
         <>
+            {loading ? <div>Loading ...</div> : 
             <div className="container mt-5">
                 <div className="card shadow-lg mb-5">
                     <div className="card-header">
@@ -366,7 +417,7 @@ let ResumeForm = () => {
                                             </tr>
                                             <tr>
                                                 <td colSpan={2}>
-                                                    <textarea name={`experience${i+1}Descreption`} onChange={updateResumeData} maxLength={200} className="col-md-12"></textarea>
+                                                    <textarea name={`experience${i+1}Descreption`} onChange={updateResumeData} maxLength={1000} className="col-md-12"></textarea>
                                                 </td>
                                             </tr>
                                         </table>
@@ -399,7 +450,7 @@ let ResumeForm = () => {
                                             </tr>
                                             <tr>
                                                 <td colSpan={2}>
-                                                    <textarea name={`project${i+1}Descreption`} onChange={updateResumeData} maxLength={200} className="col-md-12"></textarea>
+                                                    <textarea name={`project${i+1}Descreption`} onChange={updateResumeData} maxLength={1000} className="col-md-12"></textarea>
                                                 </td>
                                             </tr>
                                         </table>
@@ -420,9 +471,10 @@ let ResumeForm = () => {
                             <span className="text-danger">{resumeTitleError}</span>
                         </div>
                     </div>
-                    <input type="button" value="Submitt" onClick={submit} className="btn btn-success col-md-6 m-auto text-white mb-3 border-0" />
+                    <input type="button" value="Submit" onClick={submit} className="btn btn-success col-md-6 m-auto text-white mb-3 border-0" />
                 </div>
             </div>
+            }
         </>
     );
 }
