@@ -49,7 +49,7 @@ let ResumeForm = () => {
         project3Descreption:"",
         resumeTitle:"",
     });
-    let [loading,setLoading ]= useState(false);
+    let [loading,setLoading ]= useState(true);
     let [showMasters,setShowMasters] = useState(null);
     let [experienceCount, setExperienceCount] = useState(0);
     let [projectsCount, setProjectCount] = useState(0);
@@ -151,12 +151,17 @@ let ResumeForm = () => {
                 navigate(`/view-resume/${res.data._id}`);
             }).catch((err)=>{
                 setResumeTitleError(()=>(err.response.data.errorMessage));
+                setLoading(false);
             });
         }
     }
     return (
         <>
-            {loading ? <div>Loading ...</div> : 
+            {loading ? 
+                <div className="d-flex align-items-center justify-content-center vh-100">
+                    <div className="spinner-border text-success display-1"></div>
+                </div> 
+            : 
             <div className="container mt-5">
                 <div className="card shadow-lg mb-5">
                     <div className="card-header">
@@ -177,7 +182,7 @@ let ResumeForm = () => {
                                                 &nbsp;
                                             </td>
                                             <td>
-                                                <span>Phone Nummber <br /></span>
+                                                <span>Phone Number <br /></span>
                                                 <input type="number" name="phNumber" onChange={checkPhoneNumber} placeholder="Enter your Phone number" className="col-md-12" />
                                                 <span id="phNumberCount">{resumeData.phNumber.length}</span>/10
                                             </td>
@@ -233,7 +238,7 @@ let ResumeForm = () => {
                                         onChange={handleCheckboxChange}
                                     />
                                     <label className="form-check-label" htmlFor="showMastersCheckbox">
-                                        completed Masters
+                                        Completed Masters
                                     </label>
                                 </div>
                                 {showMasters && (
@@ -259,7 +264,7 @@ let ResumeForm = () => {
                                                             </select>
                                                         </td>
                                                         <td>
-                                                            <span>collage Name <br /></span>
+                                                            <span>College Name <br /></span>
                                                             <input type="text" name="masterCollageName" onChange={updateResumeData} className="col-md-12" />
                                                         </td>
                                                     </tr>
@@ -303,7 +308,7 @@ let ResumeForm = () => {
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <span>collage Name <br /></span>
+                                                        <span>College Name <br /></span>
                                                         <input type="text" name="bachelorCollageName" onChange={updateResumeData} className="col-md-12" />
                                                     </td>
                                                 </tr>
@@ -343,7 +348,7 @@ let ResumeForm = () => {
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <span>collage Name <br /></span>
+                                                        <span>College Name <br /></span>
                                                         <input type="text" name="diplomaCollageName" onChange={updateResumeData} className="col-md-12" />
                                                     </td>
                                                 </tr>
@@ -413,7 +418,7 @@ let ResumeForm = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Descreption</td>
+                                                <td>Description</td>
                                             </tr>
                                             <tr>
                                                 <td colSpan={2}>
