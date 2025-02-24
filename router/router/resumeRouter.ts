@@ -148,4 +148,24 @@ resumeRouter.post("/resume-data/:id",AuthLogin,async(req:express.Request,res:exp
         return res.status(500).json(err);
     }
 });
+resumeRouter.post("/delete/:resumeTitle",AuthLogin,async(req:express.Request,res:express.Response)=>{
+  try
+  {
+      let user = req.body.user.userName;
+      let resumeTitle:String = req.params.resumeTitle;
+      let data = await model.findOneAndDelete({resumeTitle:resumeTitle,userName:user});
+      if(data)
+      {
+          return res.status(200).json(data);
+      }
+      else
+      {
+          return res.status(401).json({"errorMessage":"unauthorised access"})
+      }
+  }
+  catch(err)
+  {
+      return res.status(500).json(err);
+  }
+});
 export default resumeRouter;

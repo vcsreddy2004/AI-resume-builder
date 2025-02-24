@@ -16,5 +16,10 @@ class ResumeService {
         let url = `http://127.0.0.1:5500/api/resume/resume-data/${id}`;
         return axios.post(url,{},{headers:{x_auth:token}});
     }
+    static drop(resumeTitle,token)
+    {
+        let url = `http://127.0.0.1:5500/api/resume/delete/${resumeTitle}`;
+        return axios.post(url,{"resumeTitle":resumeTitle},{headers:{x_auth:token}});
+    }
 }
 export default ResumeService;

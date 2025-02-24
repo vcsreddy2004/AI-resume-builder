@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import UserSerVice from "../servises/UserService";
+import { useNavigate } from "react-router-dom";
 let LogIn = ()=>{
     let [userData,setUserData] = useState({
         userName:"",
@@ -7,13 +8,14 @@ let LogIn = ()=>{
     });
     let [errorMessage,setErrorMessage] = useState("");
     let [passwordView, setPasswordView] = useState(false);
+    let navigator = useNavigate();
     useEffect(()=>{
         
         let token = localStorage.getItem("userToken");
         if(token)
         {
             UserSerVice.getUserData(token).then((res)=>{
-                window.location.href = "/";
+                navigator("/resume-list");
             }).catch((err)=>{
                 localStorage.removeItem("userToken");
             })

@@ -49,7 +49,7 @@ let ResumeForm = () => {
         project3Descreption:"",
         resumeTitle:"",
     });
-    let [loading,setLoading ]= useState(true);
+    let [loading,setLoading ]= useState(false);
     let [showMasters,setShowMasters] = useState(null);
     let [experienceCount, setExperienceCount] = useState(0);
     let [projectsCount, setProjectCount] = useState(0);
