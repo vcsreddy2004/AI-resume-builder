@@ -12,7 +12,7 @@ let ResumeList = () =>{
         {
             ResumeService.fetchResumeList(token).then((res)=>{
                 setResumeList(res.data);
-            }).catch((err)=>{
+            }).catch(()=>{
                 navigator("/login");
             });
         }
