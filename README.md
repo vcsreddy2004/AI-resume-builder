@@ -2,7 +2,7 @@
 Before running make sure you have done some settings.
 1) Run the fallowing command to create folder structure for react js
 ```
-npx create-react-app resumeBuilder
+npx create-react-app resume-builder
 ```
 3) paste these folders there
 4) run the fallowing command to install dependancies.
