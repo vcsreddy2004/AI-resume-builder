@@ -10,11 +10,6 @@ let ResumeList = () =>{
     useEffect(()=>{
         if(token)
         {
-            ResumeService.fetchResumeList(token).then((res)=>{
-                setResumeList(res.data);
-            }).catch((err)=>{
-                navigator("/login");
-            })
         }
     }, [navigator]);
     let drop = (resumeText) =>{
