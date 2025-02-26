@@ -17,9 +17,9 @@ function App() {
       <Navbar></Navbar>
       <BrowserRouter>
         <Routes>
-          <Route path='/logout' Component={LogOut}></Route>
-          <Route path='/login' Component={LogIn}></Route>
-          <Route path='/register' Component={Register}></Route>
+          <Route path='/logout' element={<LogOut />}></Route>
+          <Route path='/login' element={<LogIn />}></Route>
+          <Route path='/register' element={<Register />}></Route>
           <Route element={<ProtectedRoute />}>  
             <Route path='/' element={<ResumeForm />}></Route>
             <Route path='/profile' element={<Profile/>}></Route>

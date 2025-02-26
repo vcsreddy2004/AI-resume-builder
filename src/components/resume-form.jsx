@@ -55,6 +55,9 @@ let ResumeForm = () => {
     let [projectsCount, setProjectCount] = useState(0);
     let [resumeTitleError,setResumeTitleError] = useState("");
     let [AIGenerating,setAIGenerating] = useState(false);
+    let [errorMessage,setErrorMessage] = useState("");
+    let [experienceErrorMessage,setExperienceErrorMessage] = useState("");
+    let [projectErrorMessage,setProjectErrorMessage] = useState("");
     let navigate = useNavigate();
     let setExperienceCounter = (event) => {
         if(experienceCount<3)
@@ -95,57 +98,107 @@ let ResumeForm = () => {
     }
     let submit=()=>{
         let token = localStorage.getItem("userToken");
+        setErrorMessage("");
+        setExperienceErrorMessage("");
+        setProjectErrorMessage("");
         if(token)
         {   let resume = {
                 "resume":resumeData
             }
-            if(resumeData.experienceCompany1 !== "")
+            const experiences = [
+                [
+                    resumeData.experienceCompany1,
+                    resumeData.experienceLocation1,
+                    resumeData.experience1Descreption,
+                    resumeData.experience1StartDate,
+                    resumeData.experience1EndDate,
+                    resumeData.experienceRole1
+                ],
+                [
+                    resumeData.experienceCompany2,
+                    resumeData.experienceLocation2,
+                    resumeData.experience2Descreption,
+                    resumeData.experience2StartDate,
+                    resumeData.experience2EndDate,
+                    resumeData.experienceRole2
+                ],
+                [
+                    resumeData.experienceCompany3,
+                    resumeData.experienceLocation3,
+                    resumeData.experience3Descreption,
+                    resumeData.experience3StartDate,
+                    resumeData.experience3EndDate,
+                    resumeData.experienceRole3
+                ]
+            ];
+            for (const experience of experiences)
             {
-                if(resumeData.experienceLocation1 === "" || resumeData.experience1Descreption === "" || resumeData.experience1StartDate === "" || resumeData.experience1EndDate === "" || resumeData.experienceRole1 === "")
+                if (experience.some(field => field !== "")) 
                 {
-                    alert("all expirence feilds must be full");
-                    return;
+                    if (experience.some(field => field === "")) 
+                    {
+                        window.scrollTo({
+                            top:1000,
+                            behavior:'smooth'
+                        });
+                        setExperienceErrorMessage("All experience fields must be filled.");
+                        return;
+                    }
                 }
             }
-            if(resumeData.experienceCompany2 !== "")
+            const projects = [
+                { name: resumeData.project1Name, description: resumeData.project1Descreption },
+                { name: resumeData.project2Name, description: resumeData.project2Descreption },
+                { name: resumeData.project3Name, description: resumeData.project3Descreption }
+            ];
+            
+            for (const project of projects) 
             {
-                if(resumeData.experienceLocation2 === "" || resumeData.experience2Descreption === "" || resumeData.experience2StartDate === "" || resumeData.experience2EndDate === "" || resumeData.experienceRole2 === "")
+                if (project.name !== "" && project.description === "") 
                 {
-                    alert("all expirence feilds must be full");
+                    setProjectErrorMessage("All project fields must be filled.");
                     return;
                 }
+            }           
+            if(resumeData.name === "")
+            {
+                setErrorMessage("Name can not left empty");
+                window.scrollTo({
+                    top:0,
+                    behavior:'smooth'
+                });
+                return;
             }
-            if(resumeData.experienceCompany3 !== "")
+            else if(resumeData.phNumber.length !== 10)
             {
-                if(resumeData.experienceLocation3 === "" || resumeData.experience3Descreption === "" || resumeData.experience3StartDate === "" || resumeData.experience3EndDate === "" || resumeData.experienceRole3 === "")
-                {
-                    alert("all expirence feilds must be full");
-                    return;
-                }
+                setErrorMessage("Length of Phone Number must be 10");
+                window.scrollTo({
+                    top:0,
+                    behavior:'smooth'
+                });
+                return;
             }
-            if(resumeData.project1Name !== "")
+            else if(resumeData.email === "")
             {
-                if(resumeData.project1Descreption === "")
-                {
-                    alert("if project name specifed project descreption must specified");
-                    return;
-                }
+                setErrorMessage("Email can not left empty");
+                window.scrollTo({
+                    top:0,
+                    behavior:'smooth'
+                });
+                return;
             }
-            if(resumeData.project2Name !== "")
+            if (!/\S+@\S+\.\S+/.test(resumeData.email)) 
             {
-                if(resumeData.project2Descreption === "")
-                {
-                    alert("if project name specifed project descreption must specified");
-                    return;
-                }
-            }
-            if(resumeData.project3Name !== "")
+                setErrorMessage("Invalid email");
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                return;
+            } 
+            else 
             {
-                if(resumeData.project3Descreption === "")
-                {
-                    alert("if project name specifed project descreption must specified");
-                    return;
-                }
+                setErrorMessage("");
             }
             setLoading(true);
             ResumeService.upload(resume,token).then((res)=>{
@@ -186,6 +239,11 @@ let ResumeForm = () => {
             : 
             <div className="container mt-5">
                 <div className="card shadow-lg mb-5">
+                    {errorMessage !== "" ?
+                        <div className="badge badge-danger bg-danger ">
+                            <h4>{errorMessage}</h4>
+                        </div>
+                    : <></>}
                     <div className="card-header">
                         Resume Form
                     </div>
@@ -394,6 +452,11 @@ let ResumeForm = () => {
                             </div>
                         </div>
                         <div className="card col-md-12 shadow-lg mt-3">
+                            {experienceErrorMessage !== "" ?
+                                <div className="badge badge-danger bg-danger ">
+                                    <h4>{experienceErrorMessage}</h4>
+                                </div>
+                            : <></>}
                             <div className="card-header bg-dark text-white">
                                 Experience
                             </div>
@@ -445,7 +508,7 @@ let ResumeForm = () => {
                                             <tr>
                                                 <td colSpan={2}>
                                                     <textarea name={`experience${i+1}Descreption`} value={resumeData[`experience${i+1}Descreption`]} onChange={updateResumeData} maxLength={1000} className="col-md-12"></textarea>
-                                                    <input type="button" value="Regenerate with AI" className="btn btn-success" onClick={() => reGenerate(`experience${i+1}Descreption`)} />
+                                                    <input type="button" value="Enhance with AI" className="btn btn-success" onClick={() => reGenerate(`experience${i+1}Descreption`)} />
                                                     {AIGenerating === `experience${i+1}Descreption` ? 
                                                         <div class="spinner-border text-success" role="status">
                                                             <span class="sr-only">Loading...</span>
@@ -461,6 +524,11 @@ let ResumeForm = () => {
                             </div>
                         </div>
                         <div className="card col-md-12 shadow-lg mt-3">
+                            {projectErrorMessage !== "" ?
+                                <div className="badge badge-danger bg-danger ">
+                                    <h4>{projectErrorMessage}</h4>
+                                </div>
+                            : <></>}
                             <div className="card-header bg-dark text-white">
                                 Projects
                             </div>
@@ -484,7 +552,7 @@ let ResumeForm = () => {
                                             <tr>
                                                 <td colSpan={2}>
                                                     <textarea name={`project${i+1}Descreption`} value={resumeData[`project${i+1}Descreption`]} onChange={updateResumeData} maxLength={1000} className="col-md-12"></textarea>
-                                                    <input type="button" value="Regenerate with AI" className="btn btn-success" onClick={() => reGenerate(`project${i+1}Descreption`)} />
+                                                    <input type="button" value="Enhance with AI" className="btn btn-success" onClick={() => reGenerate(`project${i+1}Descreption`)} />
                                                     {AIGenerating  === `project${i+1}Descreption` ? 
                                                         <div class="spinner-border text-success" role="status">
                                                             <span class="sr-only">Loading...</span>
