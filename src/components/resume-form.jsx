@@ -54,6 +54,7 @@ let ResumeForm = () => {
     let [experienceCount, setExperienceCount] = useState(0);
     let [projectsCount, setProjectCount] = useState(0);
     let [resumeTitleError,setResumeTitleError] = useState("");
+    let [AIGenerating,setAIGenerating] = useState(false);
     let navigate = useNavigate();
     let setExperienceCounter = (event) => {
         if(experienceCount<3)
@@ -152,6 +153,27 @@ let ResumeForm = () => {
             }).catch((err)=>{
                 setResumeTitleError(()=>(err.response.data.errorMessage));
                 setLoading(false);
+            });
+        }
+    }
+    let reGenerate = (data) =>
+    {
+        let token = localStorage.getItem("userToken");
+        if(token)
+        {
+            setAIGenerating(data);
+            ResumeService.AiGenerate(resumeData[data],token).then((res)=>{   
+                setResumeData(prev=>({
+                    ...prev,
+                    [data]:res.data.AIResponse
+                }));
+            }).catch((err)=>{
+                setResumeData(prev=>({
+                    ...prev,
+                    [data]:err.response.data.AIResponse
+                }));
+            }).finally(()=>{
+                setAIGenerating("");
             });
         }
     }
@@ -377,7 +399,7 @@ let ResumeForm = () => {
                             </div>
                             <div className="card-body">
                             {Array.from({ length: experienceCount }, (_, i) => (
-                                <div className="card shadow-lg mt-3">
+                                <div key={i} className="card shadow-lg mt-3">
                                     <div className="card-header bg-dark text-white">
                                         Experience {i+1}
                                     </div>
@@ -422,7 +444,13 @@ let ResumeForm = () => {
                                             </tr>
                                             <tr>
                                                 <td colSpan={2}>
-                                                    <textarea name={`experience${i+1}Descreption`} onChange={updateResumeData} maxLength={1000} className="col-md-12"></textarea>
+                                                    <textarea name={`experience${i+1}Descreption`} value={resumeData[`experience${i+1}Descreption`]} onChange={updateResumeData} maxLength={1000} className="col-md-12"></textarea>
+                                                    <input type="button" value="Regenerate with AI" className="btn btn-success" onClick={() => reGenerate(`experience${i+1}Descreption`)} />
+                                                    {AIGenerating === `experience${i+1}Descreption` ? 
+                                                        <div class="spinner-border text-success" role="status">
+                                                            <span class="sr-only">Loading...</span>
+                                                        </div>
+                                                    :<></>}
                                                 </td>
                                             </tr>
                                         </table>
@@ -455,7 +483,13 @@ let ResumeForm = () => {
                                             </tr>
                                             <tr>
                                                 <td colSpan={2}>
-                                                    <textarea name={`project${i+1}Descreption`} onChange={updateResumeData} maxLength={1000} className="col-md-12"></textarea>
+                                                    <textarea name={`project${i+1}Descreption`} value={resumeData[`project${i+1}Descreption`]} onChange={updateResumeData} maxLength={1000} className="col-md-12"></textarea>
+                                                    <input type="button" value="Regenerate with AI" className="btn btn-success" onClick={() => reGenerate(`project${i+1}Descreption`)} />
+                                                    {AIGenerating  === `project${i+1}Descreption` ? 
+                                                        <div class="spinner-border text-success" role="status">
+                                                            <span class="sr-only">Loading...</span>
+                                                        </div>
+                                                    :<></>}
                                                 </td>
                                             </tr>
                                         </table>

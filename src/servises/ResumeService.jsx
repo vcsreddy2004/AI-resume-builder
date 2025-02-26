@@ -21,5 +21,11 @@ class ResumeService {
         let url = `http://127.0.0.1:5500/api/resume/delete/${resumeTitle}`;
         return axios.post(url,{"resumeTitle":resumeTitle},{headers:{x_auth:token}});
     }
+    static AiGenerate(prompt,token)
+    {
+        
+        let url = `http://127.0.0.1:5500/api/resume/ai_generated`;
+        return axios.post(url,{"prompt":prompt},{headers:{x_auth:token}});
+    }
 }
 export default ResumeService;

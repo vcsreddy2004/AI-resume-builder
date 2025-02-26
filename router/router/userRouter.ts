@@ -75,7 +75,7 @@ userRouter.post("/login",async(req:express.Request,res:express.Response)=>{
                 if(user.lastLogIn)
                 {
                     let loginLimit = new Date(user.lastLogIn);
-                    loginLimit.setHours(loginLimit.getHours() + 24);
+                    loginLimit.setHours(loginLimit.getHours() + 4);
                     if (currentDate > loginLimit) 
                     {
                         let payLoad = {
@@ -97,7 +97,7 @@ userRouter.post("/login",async(req:express.Request,res:express.Response)=>{
                             return res.status(500).json(userData);
                         }
                     }
-                    userData.errorMessage = "Login after 24 hours"
+                    userData.errorMessage = "Login after 4 hours"
                     return res.status(400).json(userData);
                     
                 }

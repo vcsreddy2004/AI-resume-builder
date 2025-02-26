@@ -28,7 +28,7 @@ const AuthLogin = async (req:express.Request,res:express.Response,next:express.N
                 if(user)
                 {
                     let loginLimit = new Date(user.lastLogIn);
-                    loginLimit.setHours(loginLimit.getHours() + 24);
+                    loginLimit.setHours(loginLimit.getHours() + 4);
                     if (currentDate > loginLimit) 
                     {
                         let errorMessage = "token expired"

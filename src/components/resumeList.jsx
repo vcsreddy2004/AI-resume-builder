@@ -16,7 +16,7 @@ let ResumeList = () =>{
                 navigator("/login");
             });
         }
-    }, [navigator]);
+    }, [navigator,token]);
     let drop = (resumeText) =>{
         if(token)
         {
