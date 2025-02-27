@@ -1,5 +1,24 @@
+# AI Resume Builder
+
+## Overview  
+AI Resume Builder is a web application that allows users to create and customize resumes with an intuitive interface. Users can enter their details and generate a professional resume in minutes. The project consists of a **React.js frontend** and a **Node.js backend** with MongoDB for data storage.
+
+### **Key Features**
+- Create and edit resumes dynamically
+- Save and manage multiple resumes
+- Download resumes as PDFs
+- AI-powered suggestions for resume content (via OpenRouter API)
+
 # Getting Started with Create React App
-Before running make sure you have done some settings.
+Follow these steps to set up and run the project.
+
+## Prerequisites
+Before running the project, ensure you have the following installed:
+
+Node.js (Download from [here](https://nodejs.org/en/download))
+
+npm (Comes with Node.js)
+## Project Setup
 1) Run the fallowing command to create folder structure for react js
 ```
 npx create-react-app resume-builder
@@ -35,20 +54,4 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 ```
 npm start
 ```
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The page will reload when you make changes.
