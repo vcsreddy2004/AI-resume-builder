@@ -21,7 +21,9 @@ let ResumeList = () =>{
         if(token)
         {
             ResumeService.drop(resumeText,token).then((res)=>{
-                navigator("/resume-list")
+                setResumeList((prev)=>{
+                    prev.filter(item=>item.resumeTitle !== res.data.resumeTitle);
+                });
             }).catch(()=>{
                 navigator("/resume-list");
             })
@@ -31,13 +33,13 @@ let ResumeList = () =>{
         <>
             <div className="container">
                 <div className="row mt-5">
-                    <div className="card col-md-3 p-0 border-3 add-symbol bg-dark"  onClick={() => navigator(`/`)}>
+                    <div className="card col-md-3 p-0 border-3 add-symbol bg-dark resume-card"  onClick={() => navigator(`/`)}>
                         <div className="text-white p-0">
                             <p>+</p>
                         </div>  
                     </div>
                     {resumeList && resumeList.map((data) => (
-                        <div key={data.resumeTitle} className="card col-md-3 p-0 border-3 mx-3"  onClick={() => navigator(`/view-resume/${data._id}`)}>
+                        <div key={data.resumeTitle} className="card col-md-3 p-0 border-3 mx-3 resume-card"  onClick={() => navigator(`/view-resume/${data._id}`)}>
                             <div className="card-header p-0 m-0 row align-items-center">
                                 <img src={pdfLogo} height='50px' className="col-md-2 m-0 p-0" alt="pdf" />
                                 <div className="col-md-10">

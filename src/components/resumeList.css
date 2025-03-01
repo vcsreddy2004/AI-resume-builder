@@ -14,6 +14,6 @@
     text-align: center;
     margin-top: 0px !important;
 }
-.card:hover {
+.resume-card:hover   {
     cursor: pointer;
 }
