@@ -55,3 +55,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 npm start
 ```
 The page will reload when you make changes.
+
+# Sample images how project looks like
+
+![project 4](https://github.com/user-attachments/assets/e0fb06d8-1004-4de6-85f0-b6123f3d92bc)
+![project 3](https://github.com/user-attachments/assets/ae2a9c1f-f039-42ba-a8ea-000dc086fc63)
+![project 1](https://github.com/user-attachments/assets/989ddb48-3923-4c2e-9c77-def6cb5e887b)
+![project 2](https://github.com/user-attachments/assets/3639dd28-f0a5-4987-a2d0-8077ac9166ce)
+
