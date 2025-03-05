@@ -10,10 +10,10 @@ AI Resume Builder is a web application that allows users to create and customize
 - AI-powered suggestions for resume content (via OpenRouter API).
 
 # Getting Started with Create React App
-Follow these steps to set up and run the project.
+Fallow these steps to set up and run the project.
 
 ## Prerequisites
-Before running the project, ensure you have the following installed:
+Before running the project, ensure you have the fallowing installed:
 
 Node.js (Download from [here](https://nodejs.org/en/download))
 
