@@ -19,7 +19,7 @@ Node.js (Download from [here](https://nodejs.org/en/download))
 
 npm (Comes with Node.js)
 ## Project Setup
-1) run the fallowing command to install dependancies.
+1) Open main directory and run the fallowing command to install dependancies.
 ```
 npm install
 ```
