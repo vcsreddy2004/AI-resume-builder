@@ -19,20 +19,15 @@ Node.js (Download from [here](https://nodejs.org/en/download))
 
 npm (Comes with Node.js)
 ## Project Setup
-1) Run the fallowing command to create folder structure for react js.
-```
-npx create-react-app resume-builder
-```
-2) paste these folders there.
-3) run the fallowing command to install dependancies.
+1) run the fallowing command to install dependancies.
 ```
 npm install
 ```
-4) create a .env file with fallowing code.
+2) create a .env file with fallowing code.
 ```
 REACT_APP_BACKEND_URL=http://127.0.0.1:5500
 ```
-5) create another .env file in router folder and write the fallowing code
+3) create another .env file in router folder and write the fallowing code
 ```
 PORT = 5500
 MONGO_DB_URL = "mongodb://localhost:27017/react-resume-builder"
@@ -43,7 +38,7 @@ In place of AI_API_KEY .
   ### login to [openRouter](https://openrouter.ai/).
   ### It is a platform where one API key is used to access thousand's of models.
   ### Create an API key and paste there.
-6) Now You can start project by fallowing command.
+4) Now You can start project by fallowing command.
 ```
 npm start
 ```
@@ -52,7 +47,7 @@ Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 
-7) Start backend by opening command prompt in router folder and paste the fallowing command
+5) Start backend by opening command prompt in router folder and paste the fallowing command
 ```
 npm start
 ```
