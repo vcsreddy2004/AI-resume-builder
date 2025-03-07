@@ -23,7 +23,7 @@ npm (Comes with Node.js)
 ```
 npm install
 ```
-2) create a .env file with fallowing code.
+2) create a .env file and write the fallowing code.
 ```
 REACT_APP_BACKEND_URL=http://127.0.0.1:5500
 ```
