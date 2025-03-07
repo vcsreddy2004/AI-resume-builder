@@ -23,13 +23,16 @@ npm (Comes with Node.js)
 ```
 npx create-react-app resume-builder
 ```
-3) paste these folders there.
-4) run the fallowing command to install dependancies.
+2) paste these folders there.
+3) run the fallowing command to install dependancies.
 ```
 npm install
 ```
-3) create a .env file in router folder and write the fallowing code
-
+4) create a .env file with fallowing code.
+```
+REACT_APP_BACKEND_URL=http://127.0.0.1:5500
+```
+5) create another .env file in router folder and write the fallowing code
 ```
 HOST_NAME = "127.0.0.1"
 PORT = 5500
@@ -41,7 +44,7 @@ In place of AI_API_KEY .
   ### login to [openRouter](https://openrouter.ai/).
   ### It is a platform where one API key is used to access thousand's of models.
   ### Create an API key and paste there.
-4) Now You can start project by fallowing command.
+6) Now You can start project by fallowing command.
 ```
 npm start
 ```
@@ -50,7 +53,7 @@ Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 
-5) Start backend by opening command prompt in router folder and paste the fallowing command
+7) Start backend by opening command prompt in router folder and paste the fallowing command
 ```
 npm start
 ```
@@ -62,4 +65,3 @@ The page will reload when you make changes.
 ![project 3](https://github.com/user-attachments/assets/ae2a9c1f-f039-42ba-a8ea-000dc086fc63)
 ![project 1](https://github.com/user-attachments/assets/989ddb48-3923-4c2e-9c77-def6cb5e887b)
 ![project 2](https://github.com/user-attachments/assets/3639dd28-f0a5-4987-a2d0-8077ac9166ce)
-

@@ -3,17 +3,19 @@ axios.defaults.headers.post["Content-Type"] = "application/json";
 class UserService {
     static register(data)
     {
-        let url = "http://127.0.0.1:5500/api/user/register";
+        console.log(process.env.REACT_APP_BACKEND_URL);
+        let url = `${process.env.REACT_APP_BACKEND_URL}/api/user/register`;
         return axios.post(url,data);
     }
     static login(data)
     {
-        let url = "http://127.0.0.1:5500/api/user/login";
+        console.log(process.env.REACT_APP_BACKEND_URL);
+        let url = `${process.env.REACT_APP_BACKEND_URL}/api/user/login`;
         return axios.post(url,data);
     }
     static getUserData(token)
     {
-        let url = "http://127.0.0.1:5500/api/user/get-user-data";
+        let url = `${process.env.REACT_APP_BACKEND_URL}/api/user/get-user-data`;
         return axios.post(url,{},{ headers: {x_auth:token} });
     }
 }

@@ -20,7 +20,7 @@ let LogIn = ()=>{
                 localStorage.removeItem("userToken");
             })
         }
-    },[]);
+    },[navigator    ]);
     let changePasswordView = ()=>{
         setPasswordView((event)=>!event);
     }

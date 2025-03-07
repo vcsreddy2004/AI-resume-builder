@@ -21,7 +21,7 @@ const Register = () => {
                 localStorage.removeItem("userToken");
             })
         }
-    },[]);
+    },[navigator]);
     let [errorMessage,setErrorMessage] = useState("");
     let updateUserData=(e)=>{
         setUserData(prev=>({

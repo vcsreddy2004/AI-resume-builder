@@ -22,9 +22,9 @@ app.get("/",(req:express.Request,res:express.Response)=>{
         "msg":"Express servver is running"
     });
 });
-if(config.HOST_NAME && config.PORT)
+if(config.PORT)
 {
-    app.listen(Number(config.PORT),config.HOST_NAME,()=>{
-        console.log(`Server has started at http://${config.HOST_NAME}:${config.PORT}`); 
+    app.listen(Number(config.PORT),()=>{
+        console.log(`Server has started`); 
     });
 }
