@@ -34,7 +34,6 @@ REACT_APP_BACKEND_URL=http://127.0.0.1:5500
 ```
 5) create another .env file in router folder and write the fallowing code
 ```
-HOST_NAME = "127.0.0.1"
 PORT = 5500
 MONGO_DB_URL = "mongodb://localhost:27017/react-resume-builder"
 SECRETE_KEY = "<Write randomised collections of charecters and numbers"
