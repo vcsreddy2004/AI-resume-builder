@@ -1,6 +1,5 @@
 import express from "express";
 import config from "../config";
-import { UserView } from "../models/users/userView";
 import { IUser } from "../models/users/IUser";
 import User from "../models/users/User";
 import jwt from "jsonwebtoken";
