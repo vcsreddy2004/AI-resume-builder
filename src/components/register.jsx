@@ -12,15 +12,11 @@ const Register = () => {
     });
     let navigator = useNavigate();
     useEffect(()=>{
-        let token = localStorage.getItem("userToken");
-        if(token)
-        {
-            UserSerVice.getUserData(token).then((res)=>{
-                navigator("/resume-list");
-            }).catch((err)=>{
-                localStorage.removeItem("userToken");
-            })
-        }
+        UserSerVice.getUserData().then((res)=>{
+            navigator("/resume-list");
+        }).catch((err)=>{
+            localStorage.removeItem("userToken");
+        })
     },[navigator]);
     let [errorMessage,setErrorMessage] = useState("");
     let updateUserData=(e)=>{

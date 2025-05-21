@@ -211,24 +211,20 @@ let ResumeForm = () => {
     }
     let reGenerate = (data) =>
     {
-        let token = localStorage.getItem("userToken");
-        if(token)
-        {
-            setAIGenerating(data);
-            ResumeService.AiGenerate(resumeData[data],token).then((res)=>{   
-                setResumeData(prev=>({
-                    ...prev,
-                    [data]:res.data.AIResponse
-                }));
-            }).catch((err)=>{
-                setResumeData(prev=>({
-                    ...prev,
-                    [data]:err.response.data.AIResponse
-                }));
-            }).finally(()=>{
-                setAIGenerating("");
-            });
-        }
+        setAIGenerating(data);
+        ResumeService.AiGenerate(resumeData[data]).then((res)=>{   
+            setResumeData(prev=>({
+                ...prev,
+                [data]:res.data.AIResponse
+            }));
+        }).catch((err)=>{
+            setResumeData(prev=>({
+                ...prev,
+                [data]:err.response.data.AIResponse
+            }));
+        }).finally(()=>{
+            setAIGenerating("");
+        });
     }
     return (
         <>

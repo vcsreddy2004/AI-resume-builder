@@ -4,15 +4,11 @@ import "./navbar.css"
 let Navbar = () =>{
     let [isLogIn,setLogIn] = useState(false);
     useEffect(()=>{
-        let token = localStorage.getItem("userToken");
-        if(token)
-        {
-            UserSerVice.getUserData(token).then((res)=>{
-                setLogIn(true)
-            }).catch((err)=>{
-                localStorage.removeItem("userToken");
-            })
-        }
+        UserSerVice.getUserData().then((res)=>{
+            setLogIn(true)
+        }).catch((err)=>{
+            console.log(err);
+        })
     },[]);
     return (
         <>

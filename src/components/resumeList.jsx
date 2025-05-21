@@ -6,28 +6,21 @@ import "./resumeList.css";
 let ResumeList = () =>{
     let [resumeList,setResumeList] = useState();
     let navigator = useNavigate();
-    let token = localStorage.getItem("userToken");
     useEffect(()=>{
-        if(token)
-        {
-            ResumeService.fetchResumeList(token).then((res)=>{
-                setResumeList(res.data);
-            }).catch(()=>{
-                navigator("/login");
-            });
-        }
-    }, [navigator,token]);
+        ResumeService.fetchResumeList().then((res)=>{
+            setResumeList(res.data);
+        }).catch(()=>{
+            navigator("/login");
+        });
+    }, [navigator]);
     let drop = (resumeText) =>{
-        if(token)
-        {
-            ResumeService.drop(resumeText,token).then((res)=>{
-                setResumeList((prev)=>{
-                    prev.filter(item=>item.resumeTitle !== res.data.resumeTitle);
-                });
-            }).catch(()=>{
-                navigator("/resume-list");
-            })
-        }
+        ResumeService.drop(resumeText).then((res)=>{
+            setResumeList((prev)=>{
+                prev.filter(item=>item.resumeTitle !== res.data.resumeTitle);
+            });
+        }).catch(()=>{
+            navigator("/resume-list");
+        })
     }
     return (
         <>

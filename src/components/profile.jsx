@@ -9,20 +9,16 @@ const Profile = () => {
         userName:"",
     });
     useEffect(()=>{
-        let token = localStorage.getItem("userToken");
-        if(token)
-        {
-            UserSerVice.getUserData(token).then((res)=>{
-                setUser(prev=>({
-                    firstName:res.data.firstName,
-                    lastName:res.data.lastName,
-                    email:res.data.email,
-                    userName:res.data.userName
-                }))                
-            }).catch((err)=>{
-                localStorage.removeItem("userToken");
-            })
-        }
+        UserSerVice.getUserData().then((res)=>{
+            setUser(prev=>({
+                firstName:res.data.firstName,
+                lastName:res.data.lastName,
+                email:res.data.email,
+                userName:res.data.userName
+            }))                
+        }).catch((err)=>{
+            console.log(err);
+        })
     },[]);
     return (
         <>

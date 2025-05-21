@@ -20,7 +20,7 @@ let LogIn = ()=>{
                 localStorage.removeItem("userToken");
             })
         }
-    },[navigator    ]);
+    },[navigator]);
     let changePasswordView = ()=>{
         setPasswordView((event)=>!event);
     }
@@ -42,7 +42,6 @@ let LogIn = ()=>{
         if(userData.userName !== "" && userData.password !== "")
         {
             UserSerVice.login(userData).then((res)=>{
-                localStorage.setItem("userToken",res.data.token);
                 window.location.href = "/";
             }).catch((error)=>{
                 setErrorMessage(error.response.data.errorMessage);

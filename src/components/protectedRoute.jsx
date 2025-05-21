@@ -8,19 +8,10 @@ const ProtectedRoute = () => {
 
     useEffect(() => {
         const checkAuth = async () => {  
-            let token = localStorage.getItem("userToken");
-
-            if (!token) {
-                setIsLoggedIn(false); 
-                setLoading(false);
-                return;  
-            }
-
             try {
-                await UserService.getUserData(token);  
+                await UserService.getUserData();  
                 setIsLoggedIn(true);
             } catch (error) {
-                localStorage.removeItem("userToken");
                 setIsLoggedIn(false); 
             } finally {
                 setLoading(false);  

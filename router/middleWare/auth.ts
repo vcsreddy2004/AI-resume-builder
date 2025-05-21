@@ -4,12 +4,13 @@ import { IUser } from "../models/users/IUser";
 import User from "../models/users/User";
 import jwt from "jsonwebtoken";
 const AuthLogin = async (req:express.Request,res:express.Response,next:express.NextFunction) => {
-    let token:string = req.headers['x_auth'] as string;
     try
     {
-        if(token=="")
+        let token = req.cookies["token"];
+        if(!token)
         {
             let errorMessage = "Invalid token";
+            res.clearCookie("token");
             return res.status(500).json({errorMessage});
         }
         if(config.SECRETE_KEY)
@@ -18,7 +19,8 @@ const AuthLogin = async (req:express.Request,res:express.Response,next:express.N
             if(typeof(payLoad) == "string")
             {
                 let errorMessage = "Invalid token";
-                return res.status(500).json({'errorMessaage':errorMessage});
+                res.clearCookie("token");
+                return res.status(500).json({'errorMessage':errorMessage});
             }
             else
             {
@@ -31,6 +33,7 @@ const AuthLogin = async (req:express.Request,res:express.Response,next:express.N
                     if (currentDate > loginLimit) 
                     {
                         let errorMessage = "token expired"
+                        res.clearCookie("token");
                         return res.status(400).json({'errorMessage':errorMessage});
                     }
                     else
@@ -52,6 +55,7 @@ const AuthLogin = async (req:express.Request,res:express.Response,next:express.N
                 else
                 {
                     let errorMessage = "Invalid token";
+                    res.clearCookie("token");
                     return res.status(500).json({'errorMessage':errorMessage});
                 }
             }
@@ -59,12 +63,15 @@ const AuthLogin = async (req:express.Request,res:express.Response,next:express.N
         else
         {
             let errorMessage = "Environment variable error";
+            res.clearCookie("token");
             return res.status(500).json({'errorMessage':errorMessage});
         }
     }
     catch(err)
     {
-
+        console.error("AuthLogin Error:", err);
+        res.clearCookie("token");
+        return res.status(401).json({ errorMessage: "Unauthorized access" });
     }
 }
 export default AuthLogin;

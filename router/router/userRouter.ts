@@ -86,12 +86,13 @@ userRouter.post("/login",async(req:express.Request,res:express.Response)=>{
                         if(config.SECRETE_KEY)
                         {
                             await User.findOneAndUpdate({userName:user.userName},{lastLogIn:new Date()},{ new: true } );
-                            userData.token = await jwt.sign(payLoad,config.SECRETE_KEY);
+                            let token = await jwt.sign(payLoad,config.SECRETE_KEY)
                             userData.errorMessage = "";
+                            res.cookie("token",token,{httpOnly:true,sameSite:"lax",secure:false});
                             return res.status(200).json(userData);
                         }
                         else
-                        {
+                        {   
                             userData = {} as UserView;
                             userData.errorMessage = "Environment variable error";
                             return res.status(500).json(userData);
@@ -111,7 +112,8 @@ userRouter.post("/login",async(req:express.Request,res:express.Response)=>{
                     if(config.SECRETE_KEY)
                     {
                         await User.findOneAndUpdate({userName:user.userName},{lastLogIn:new Date()},{ new: true } );
-                        userData.token = await jwt.sign(payLoad,config.SECRETE_KEY);
+                        let token = await jwt.sign(payLoad,config.SECRETE_KEY)
+                        res.cookie("token",token,{httpOnly:true,sameSite:"lax",secure:false});
                         return res.status(200).json(userData);
                     }
                     else
@@ -140,6 +142,10 @@ userRouter.post("/login",async(req:express.Request,res:express.Response)=>{
     {
         return res.status(500).json(err);
     }
+});
+userRouter.post("/logout",AuthLogin,async(req:express.Request,res:express.Response)=>{
+    res.clearCookie("token");
+    return res.status(200).json({"success":"log out success"})
 });
 userRouter.post("/get-user-data",AuthLogin,async(req:express.Request,res:express.Response)=>{
     try
